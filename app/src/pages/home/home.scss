@@ -1,0 +1,55 @@
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
+}
+
+page-home {
+	text-align: center;
+	#map {
+		height: 100%;
+		z-index: 9999;
+	}
+}
+
+ion-app._gmaps_cdv_ .nav-decor{
+	background-color: transparent !important;
+}
+
+.no-scroll {
+	.scroll-content {
+		overflow-y: hidden;
+	}
+}
+
+ion-fab {
+    button {
+        box-shadow: 0 4px 10px #6b6b6b;
+    }
+
+    ion-fab-list button[ion-fab] {
+        text-align: center;
+        overflow: visible;
+
+        div.label {
+          position: absolute;
+          right: 48px;
+          background: dark;
+          height: 24px;
+          line-height: 16px;
+          padding-left: 8px;
+          padding-right: 8px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          margin-top: 8px;
+          border-radius: 5px;
+          box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+          overflow: visible;
+        }
+    }
+
+    .button-inner {
+        overflow: visible;
+    }
+}

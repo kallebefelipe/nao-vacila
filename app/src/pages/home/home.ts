@@ -26,7 +26,11 @@ export class HomePage {
     let mapOptions = {
       center: latLng,
       zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoomControl: false,
+      streetViewControl: false,
+      fullscreenControl: false,
+      mapTypeControl: false
     }
  
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
