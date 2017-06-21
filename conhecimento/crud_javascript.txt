@@ -1,0 +1,59 @@
+# GET
+
+var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status == 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status);
+      }
+    };
+    xhr.send();
+};
+
+
+# POST
+
+var form;
+
+form.onsubmit = function (e) {
+  // stop the regular form submission
+  e.preventDefault();
+
+  // collect the form data while iterating over the inputs
+  var data = {};
+  for (var i = 0, ii = form.length; i < ii; ++i) {
+    var input = form[i];
+    if (input.name) {
+      data[input.name] = input.value;
+    }
+  }
+
+  // construct an HTTP request
+  var xhr = new XMLHttpRequest();
+  xhr.open(form.method, form.action, true);
+  xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+  // send the collected data as JSON
+  xhr.send(JSON.stringify(data));
+
+  xhr.onloadend = function () {
+    // done
+  };
+};
+
+
+# DELETE
+
+var removeRole = function (roleid, userid) {
+        var input =[];
+        input.user = userid;
+
+        $http.delete('/roles/' + roleid, input).success(function (data, status) {
+            console.log(data);
+        });
+    };
