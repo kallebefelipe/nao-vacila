@@ -8,22 +8,29 @@
 </ion-header>
 
 <ion-content>
-<ion-fab bottom center>
-    <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+
+<ion-fab right bottom >
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    
     <ion-fab-list side="top">
-    <button ion-fab>
-        <ion-icon name="flash"></ion-icon>
-        <div class="label">LABEL TEXT HERE</div>
+      <button ion-fab>
+        <ion-icon name="clipboard"></ion-icon>
+        <ion-label>Registrar Ocorrência</ion-label>
       </button>
 
       <button ion-fab>
-      <label>hereeeeeeeeeeeee</label>
-      <ion-icon name="alert"></ion-icon>
+        <ion-icon name="navigate"></ion-icon>
+        <ion-label>Criar Rota Segura</ion-label>
       </button>
-      <button ion-fab><ion-icon name="navigate"></ion-icon></button>
-      <button ion-fab><ion-icon name="call"></ion-icon></button>
+      
+      <button ion-fab>
+        <ion-icon name="call"></ion-icon>
+        <ion-label>Chamada de Emergência</ion-label>
+      </button>
     </ion-fab-list>
+ 
   </ion-fab>
   <div #map id="map">
   </div>
+
 </ion-content>

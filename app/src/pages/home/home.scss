@@ -23,33 +23,24 @@ ion-app._gmaps_cdv_ .nav-decor{
 	}
 }
 
-ion-fab {
-    button {
-        box-shadow: 0 4px 10px #6b6b6b;
-    }
 
-    ion-fab-list button[ion-fab] {
-        text-align: center;
+ button[ion-fab] {
         overflow: visible;
+        position: relative;
 
-        div.label {
-          position: absolute;
-          right: 48px;
-          background: dark;
-          height: 24px;
-          line-height: 16px;
-          padding-left: 8px;
-          padding-right: 8px;
-          padding-top: 5px;
-          padding-bottom: 5px;
-          margin-top: 8px;
-          border-radius: 5px;
-          box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
-          overflow: visible;
+        ion-label {
+            position: absolute;
+            top: -8px;
+            right: 40px;
+
+            color: white;
+            background-color: rgba(0,0,0,0.7);
+            line-height: 24px;
+            padding: 4px 8px;
+            border-radius: 4px;
         }
-    }
+}
 
-    .button-inner {
-        overflow: visible;
-    }
+.fab{
+    contain:layout;
 }
