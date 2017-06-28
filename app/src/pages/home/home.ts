@@ -37,4 +37,8 @@ export class HomePage {
  
   }
 
+  abrirRegistrarOcorrencia(){
+    this.navCtrl.push('TipoOcorrenciaPage');
+  }
+
 }
