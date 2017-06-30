@@ -11,7 +11,7 @@
     </head>
     <body>
         
-            <!-- Login com Facebook -->
+        <!-- Login com Facebook -->
         <script>(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) return;
@@ -28,19 +28,52 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="cadastrar-ocorrencia.html">Cadastrar Ocorrência</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="cadastrar-ocorrencia.html">Cadastrar Ocorrência</a></li>
                 </ul>
                 <div class="nav navbar-nav navbar-right fb-login-button" data-width="200" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"></div>
             </div><!--/.nav-collapse -->
           </div>
         </nav>
         
-        <div id="map"></div>
+        <form id="eventForm" method="post" class="form">
+            <!-- Form Name -->
+            <legend>Informações da Ocorrência</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="control-label" for="idTitulo">Título:</label>  
+              <input id="idTitulo" type="text" class="form-control" required="">
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label" for="idEndereco">Endereço:</label>  
+              <input id="idEndereco" type="text" class="form-control" required="">
+            </div>
+            
+            <div class="form-group">
+              <label class="control-label" for="comment">Descrição:</label>
+              <textarea class="form-control" rows="5" id="descricao"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="sel1">Tipo:</label>
+              <select class="form-control" id="sel1">
+                <option></option>
+                <option>Assalto</option>
+                <option>Furto</option>
+                <option>Sequestro</option>
+                <option>Arrastão</option>
+                <option>...</option>
+              </select>
+            </div>
+            
+        
+        </form>
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap-datepicker.js"></script>
         <script src="custom.js"></script>
     </body>
 </html>
