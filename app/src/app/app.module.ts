@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { Facebook } from '@ionic-native/facebook';
 
 import { HomePage } from '../pages/home/home';
 import { RadarPage } from '../pages/radar/radar';
@@ -11,6 +13,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
@@ -18,11 +21,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     RadarPage,
     ConfigPage,
-    TabsPage
+    TabsPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      backButtonText: 'voltar'
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,12 +36,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     RadarPage,
     ConfigPage,
-    TabsPage
+    TabsPage,
+    LoginPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
+    NativeStorage,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
