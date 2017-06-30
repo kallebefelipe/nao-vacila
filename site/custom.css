@@ -1,12 +1,13 @@
 body {
     font-family: 'Montserrat', sans-serif;
 }
+
 h1{
     text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 40px;
 }
 
 #map {
-    width: 100%; height: 400px; margin-top: 40px; margin-bottom: 40px;
+    width: 100%; height: 100%;
 }
 
 .info-window {
@@ -16,3 +17,29 @@ h1{
     color: #999;
 }
 
+.navbar-brand img {
+    width:150px;
+    height:30px;
+}
+
+.fb-login-button {
+    width:150px;
+    height:30px;
+}
+
+.form {
+    padding-top: 60px;
+    padding-left: 60px;
+}
+
+.control-label {
+    float: left;
+}
+
+.fb-login-button {
+    padding-top: 10px;
+}
+
+.form-group{
+    width: 25%;
+}
