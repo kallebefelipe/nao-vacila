@@ -5,6 +5,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 import { HomePage } from '../pages/home/home';
 import { RadarPage } from '../pages/radar/radar';
@@ -45,6 +46,7 @@ import { LoginPage } from '../pages/login/login';
     Geolocation,
     NativeStorage,
     Facebook,
+    GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -28,8 +28,8 @@ export class MyApp {
         splashScreen.hide();
       }, function (error) {
         //we don't have the user data so we will ask him to log in
-        //env.nav.setRoot(LoginPage);
-        env.nav.setRoot(TabsPage);
+        env.nav.setRoot(LoginPage);
+        
         splashScreen.hide();
       });
 
