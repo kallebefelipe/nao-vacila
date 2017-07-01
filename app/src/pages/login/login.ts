@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { Facebook } from '@ionic-native/facebook';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { HomePage } from '../home/home';
 
@@ -16,10 +16,10 @@ import { HomePage } from '../home/home';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-FB_APP_ID: number = 350485625371107;
+FB_APP_ID: number = 1685597175088590;
 
   constructor(public navCtrl: NavController, public fb: Facebook, public NativeStorage: NativeStorage) {
-    //this.fb.browserInit(this.FB_APP_ID, "v2.8");
+    this.fb.browserInit(this.FB_APP_ID, "v2.8");
   }
 
   doFbLogin(){
@@ -32,6 +32,7 @@ FB_APP_ID: number = 350485625371107;
 
     this.fb.login(permissions)
     .then(function(response){
+      console.log('entrou em login ' + JSON.stringify(response));
       let userId = response.authResponse.userID;
       let params = new Array<string>();
 
@@ -53,7 +54,7 @@ FB_APP_ID: number = 350485625371107;
         })
       })
     }, function(error){
-      console.log('erro no login do fb'+JSON.stringify(error));
+      console.log('erro no login do fb'+error);
     });
   }
 
