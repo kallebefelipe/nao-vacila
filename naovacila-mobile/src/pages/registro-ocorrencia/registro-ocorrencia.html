@@ -7,12 +7,43 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>registro-ocorrencia</ion-title>
+    <ion-title>Registrar Ocorrência</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  
+  <ion-list>
+    <ion-item>
+      <ion-label>Data</ion-label>
+      <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="hoje"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Horário</ion-label>
+      <ion-datetime displayFormat="hh:mm A" pickerFormat="h h mm A" [(ngModel)]="hora"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Título da ocorrência</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Endereço da ocorrência</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+   
+    <div #map id="map"></div>
+
+    <ion-item>
+      <ion-label stacked>Descrição  da ocorrência</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+    <button ion-button full (click)="salvarOcorrencia()">Registrar Ocorrência</button>
 
 </ion-content>

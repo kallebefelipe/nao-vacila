@@ -1,17 +1,36 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+   <!--<img src="assets\\imagens\\logo1.png" width="35%">-->
+   <ion-title>
+   #NaoVacila
+   </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+
+  <ion-fab right bottom >
+    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    
+    <ion-fab-list side="top">
+      <button ion-fab (click)="abrirRegistrarOcorrencia()">
+        <ion-icon name="clipboard"></ion-icon>
+        <ion-label>Registrar Ocorrência</ion-label>
+      </button>
+
+      <button ion-fab>
+        <ion-icon name="navigate"></ion-icon>
+        <ion-label>Criar Rota Segura</ion-label>
+      </button>
+      
+      <button ion-fab>
+        <ion-icon name="call"></ion-icon>
+        <ion-label>Chamada de Emergência</ion-label>
+      </button>
+    </ion-fab-list>
+ 
+  </ion-fab>
+
+  <div #map id="map"> </div>
+
 </ion-content>

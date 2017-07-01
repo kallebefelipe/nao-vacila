@@ -1,3 +1,20 @@
-page-registro-ocorrencia {
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
 
+.gmnoprint a, .gmnoprint span, .gm-style-cc {
+    display:none;
 }
+
+page-registro-ocorrencia {
+	text-align: center;
+	#map {
+		height: 130px;
+		z-index: 9999;
+	}
+}
+
+ion-app._gmaps_cdv_ .nav-decor{
+	background-color: transparent !important;
+}
+
+

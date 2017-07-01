@@ -17,6 +17,10 @@ export class TipoOcorrenciaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  abrirregistroOcorrencia(){
+    this.navCtrl.push('RegistroOcorrenciaPage')
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad TipoOcorrenciaPage');
   }

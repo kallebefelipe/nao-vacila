@@ -1,20 +1,19 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { Facebook } from '@ionic-native/facebook';
 
 import { HomePage } from '../pages/home/home';
 import { RadarPage } from '../pages/radar/radar';
 import { ConfigPage } from '../pages/config/config';
 import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { NativeStorage } from '@ionic-native/native-storage';
-import { Facebook } from '@ionic-native/facebook';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
-
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      backButtonText: 'voltar'
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,9 +42,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
   providers: [
     StatusBar,
     SplashScreen,
+    Geolocation,
     NativeStorage,
     Facebook,
-    ScreenOrientation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
