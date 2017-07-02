@@ -1,0 +1,4 @@
+[ec2-user@ip-172-31-0-152 ~]$ export WORKON_HOME=$HOME/.virtualenvs
+[ec2-user@ip-172-31-0-152 ~]$ source /usr/local/bin/virtualenvwrapper.sh
+[ec2-user@ip-172-31-0-152 ~]$ source ~/.bashrc
+[ec2-user@ip-172-31-0-152 ~]$ workon nao-vacila

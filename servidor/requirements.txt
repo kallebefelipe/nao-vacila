@@ -1,5 +1,16 @@
+certifi==2017.4.17
+chardet==3.0.4
 Django==1.11.2
 django-filter==1.0.4
 djangorestframework==3.6.3
+httpie==0.9.9
+idna==2.5
 Markdown==2.6.8
+psycopg2==2.7.1
+Pygments==2.2.0
+python-decouple==3.0
 pytz==2017.2
+requests==2.18.1
+SQLAlchemy==1.1.11
+urllib3==1.21.1
+postgresql://amazondb:amazondb@teste-pg-1.cykxysohpxuc.us-east-2.rds.amazonaws.com:5432/teste
