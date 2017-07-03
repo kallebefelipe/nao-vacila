@@ -32,14 +32,40 @@ h1{
     padding-left: 60px;
 }
 
-.control-label {
-    float: left;
+.form-inline{
+    padding-bottom: 20px;
+}
+
+.form-group{
+    padding-right: 90px;
 }
 
 .fb-login-button {
     padding-top: 10px;
 }
 
-.form-group{
-    width: 25%;
+.section {
+  width: 100%;
+}
+
+#idEndereco {
+    width: 30%;
+}
+
+#idTipo {
+    width: 30%;
+}
+
+#idDescricao {
+    width: 40%;
+}
+
+#btnSubmit {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+#eventForm{
+    background-color: #F5F5F5;
+    height: 100%
 }
