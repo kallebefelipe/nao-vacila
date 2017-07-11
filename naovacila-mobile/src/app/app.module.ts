@@ -15,6 +15,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
+import { OcorrenciaServicoProvider } from '../providers/ocorrencia-servico/ocorrencia-servico';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { LoginPage } from '../pages/login/login';
     IonicModule.forRoot(MyApp, {
       backButtonText: 'voltar'
     }),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,7 +50,8 @@ import { LoginPage } from '../pages/login/login';
     NativeStorage,
     Facebook,
     GooglePlus,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    OcorrenciaServicoProvider
   ]
 })
 export class AppModule {}

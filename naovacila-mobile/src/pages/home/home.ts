@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { OcorrenciaServicoProvider } from '../../providers/ocorrencia-servico/ocorrencia-servico';
 
 declare var google;
 
@@ -10,9 +11,19 @@ declare var google;
 export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  ocorrencias: any;
  
-  constructor(public navCtrl: NavController) {
- 
+  constructor(public navCtrl: NavController, public ocorrenciaServico: OcorrenciaServicoProvider) {
+    this.ocorrenciaServico.carregarOcorrencias()
+      .subscribe(
+        data => {
+          this.ocorrencias = data;
+        },
+        err => {
+          console.log('ERROR ' + err);
+        },
+        ()=> console.log("serviço finalizado")
+      );
   }
  
   ionViewDidLoad(){

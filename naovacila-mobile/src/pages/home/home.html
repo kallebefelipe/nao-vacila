@@ -8,6 +8,12 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item *ngFor="let ocorrencia of ocorrencias">
+      <h3>{{ocorrencia.id}}</h3>
+      <p>{{ocorrencia.tipo}} {{ocorrencia.descricao}}</p>
+    </ion-item>
+  </ion-list>
 
   <ion-fab right bottom >
     <button ion-fab><ion-icon name="add"></ion-icon></button>
