@@ -1,3 +1,4 @@
+//MAPA
 $(function () {
 
     function initMap() {
@@ -66,3 +67,26 @@ $(function () {
 
     google.maps.event.addDomListener(window, 'load', initMap);
 });
+
+// Login com Facebook
+$(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.9&appId=198811240646933";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+$.getJSON('http://cors.io/?https://webserver-nao-vacila.herokuapp.com/ocorrencia/',
+function(err, data) {
+  if (err != null) {
+    alert('Something went wrong: ' + err);
+  } else {
+    alert('Your query count: ' + data.query.count);
+  }
+});
+
+
+
+
