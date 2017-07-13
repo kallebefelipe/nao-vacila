@@ -52,4 +52,8 @@ export class HomePage {
     this.navCtrl.push('TipoOcorrenciaPage');
   }
 
+  abrirCriarRota(){
+    this.navCtrl.push('CriarRotaPage');
+  }
+
 }
