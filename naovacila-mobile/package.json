@@ -24,8 +24,9 @@
         "@ionic-native/facebook": "^3.12.1",
         "@ionic-native/geolocation": "^3.12.1",
         "@ionic-native/google-plus": "^3.12.1",
+        "@ionic-native/native-geocoder": "^4.0.1",
         "@ionic-native/native-storage": "^3.12.1",
-        "@ionic-native/screen-orientation": "^3.12.1",
+        "@ionic-native/screen-orientation": "^3.14.0",
         "@ionic-native/splash-screen": "3.12.1",
         "@ionic-native/status-bar": "3.12.1",
         "@ionic/storage": "2.0.1",
@@ -36,6 +37,7 @@
         "cordova-plugin-facebook4": "git+https://github.com/jeduan/cordova-plugin-facebook4.git",
         "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-googleplus": "^5.1.1",
+        "cordova-plugin-nativegeocoder": "^1.0.2",
         "cordova-plugin-nativestorage": "^2.2.2",
         "cordova-plugin-screen-orientation": "^2.0.1",
         "cordova-plugin-splashscreen": "^4.0.3",
@@ -69,11 +71,11 @@
                 "APP_NAME": "Não Vacila"
             },
             "cordova-plugin-nativestorage": {},
-            "cordova-plugin-screen-orientation": {},
             "cordova-plugin-googleplus": {
                 "REVERSED_CLIENT_ID": "com.googleusercontent.apps.550281591965-47suhso1c2e8hsrvhj8a49ckjp2e5td8"
             },
-            "cordova-plugin-geolocation": {}
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-nativegeocoder": {}
         },
         "platforms": [
             "android"

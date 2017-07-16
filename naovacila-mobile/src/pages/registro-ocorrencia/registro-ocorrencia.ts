@@ -2,6 +2,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {HomePage} from '../home/home';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { OcorrenciaServicoProvider } from '../../providers/ocorrencia-servico/ocorrencia-servico';
 
 declare var google;
 
@@ -16,8 +18,11 @@ export class RegistroOcorrenciaPage {
 
   hoje:any;
   hora:any;
+  titulo:any;
+  descricao:any;
+  endereco:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public ocorrenciaServico: OcorrenciaServicoProvider, private nativeGeocoder: NativeGeocoder) {
     
     var today = new Date();
     var dd = today.getDate();
@@ -51,23 +56,23 @@ export class RegistroOcorrenciaPage {
   }
 
   salvarOcorrencia(){
-    this.navCtrl.setRoot(HomePage);
+    
+    this.ocorrenciaServico.salvarOcorrencia(this.titulo, this.descricao)
+    .subscribe(
+        data => {
+          this.navCtrl.setRoot(HomePage);
+          
+        },
+        err => {
+          alert("Erro ao salvar ocorrência. Tente novamente.")
+          console.log('[ERRO] ao carregar ocorrências no serviço' + err);
+        },
+        ()=> console.log("serviço finalizado")
+      );
   }
 
   ionViewDidLoad(){
     this.loadMap();
-  }
-
-  addInfoWindow(marker, content){
- 
-    let infoWindow = new google.maps.InfoWindow({
-      content: content
-    });
-  
-    google.maps.event.addListener(marker, 'click', () => {
-      infoWindow.open(this.map, marker);
-    });
- 
   }
  
   loadMap(){
@@ -90,18 +95,32 @@ export class RegistroOcorrenciaPage {
 
       let marker = new google.maps.Marker({
         map: this.map,
+        draggable: true,
         animation: google.maps.Animation.DROP,
         position: this.map.getCenter()
       });
- 
-      let content = "<h4>Information!</h4>";          
- 
-      this.addInfoWindow(marker, content);
- 
-    }, (err) => {
+
+       google.maps.event.addListener(marker, 'dragend', (event) => {
+        console.log("marcador arrastado" + marker.getPosition().lat() + "- " + marker.position);
+        this.reverseGeocode(marker.getPosition().lat(), marker.getPosition().lng());
+      });
+      
+      this.reverseGeocode(position.coords.latitude, position.coords.longitude);
+      
+      }, (err) => {
       console.log(err);
     });
  
+  }
+
+  reverseGeocode(latitude, longitude){
+    this.nativeGeocoder.reverseGeocode(latitude, longitude)
+        .then((result: NativeGeocoderReverseResult) => {
+          console.log('The address is ' + result.street + ' in ' + result.countryCode + " " + JSON.stringify(result));
+          this.endereco = result.street + ", " +result.houseNumber + " - " + result.district;
+        })
+        .catch((error: any) => console.log("erro no geocoder reverso"+ error));
+    
   }
 
 }

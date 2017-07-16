@@ -28,19 +28,19 @@
 
     <ion-item>
       <ion-label stacked>Título da ocorrência</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="titulo"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Endereço da ocorrência</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="endereco"></ion-input>
     </ion-item>
    
     <div #map id="map"></div>
 
     <ion-item>
       <ion-label stacked>Descrição  da ocorrência</ion-label>
-      <ion-textarea></ion-textarea>
+      <ion-textarea [(ngModel)]="descricao"></ion-textarea>
     </ion-item>
   </ion-list>
 

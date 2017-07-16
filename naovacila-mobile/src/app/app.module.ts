@@ -17,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { OcorrenciaServicoProvider } from '../providers/ocorrencia-servico/ocorrencia-servico';
 import { HttpModule } from '@angular/http';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { HttpModule } from '@angular/http';
     Facebook,
     GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    OcorrenciaServicoProvider
+    OcorrenciaServicoProvider,
+    NativeGeocoder
   ]
 })
 export class AppModule {}

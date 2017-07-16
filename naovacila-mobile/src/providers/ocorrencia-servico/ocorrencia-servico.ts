@@ -22,4 +22,11 @@ data: any;
       .catch(res=>{return Observable.throw(res)});
   }
 
+  salvarOcorrencia(titulo, descricao){
+    return this.http.post(apiOcorrenciaUrl, {titulo: titulo})
+    .map(res=>res.json())
+    .catch(res=>{return Observable.throw(res)});
+
+  }
+
 }

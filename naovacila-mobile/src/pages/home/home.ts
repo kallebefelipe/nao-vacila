@@ -19,30 +19,31 @@ export class HomePage {
   }
  
   ionViewDidLoad(){
-    this.loadMap();
-    this.carregarOcorrencias();
-  
+    this.loadMap();  
   }
  
   loadMap(){
 
     this.geolocation.getCurrentPosition().then((position) => {
- 
-    let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
- 
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      zoomControl: false,
-      streetViewControl: false,
-      fullscreenControl: false,
-      mapTypeControl: false
-    }
- 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      console.log('[INFO] posição atual: ' + position.coords.latitude + "," + position.coords.longitude);
+      
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        zoomControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        mapTypeControl: false
+      }
+      
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.carregarOcorrencias();
+      
     }, (err) =>{
-      console.log(err);
+      console.log('[ERRO] ao carregar localização' + err);
     });
   }
 
@@ -56,7 +57,7 @@ export class HomePage {
           }
         },
         err => {
-          console.log('ERROR ' + err);
+          console.log('[ERRO] ao carregar ocorrências no serviço' + err);
         },
         ()=> console.log("serviço finalizado")
       );
@@ -82,17 +83,19 @@ export class HomePage {
   }
 
   adicionarMarcador(ocorrencia){
-    console.log("INFO-adicionando marcador para ocorrencia: " + ocorrencia.titulo);
-    let latLng = new google.maps.LatLng(-8.044916, -34.9282);
+    console.log("INFO - adicionando marcador para ocorrencia: " + ocorrencia.titulo + "coordenadas: " + ocorrencia.latitude + "," + ocorrencia.longitude);
+    
+    let latLng = new google.maps.LatLng(ocorrencia.latitude, ocorrencia.longitude);
+    
     let marker = new google.maps.Marker({
         map: this.map,
         animation: google.maps.Animation.DROP,
         position: latLng
       });
  
-      let content = "<h4>"+ocorrencia.titulo+ "</h4> <p>" +ocorrencia.descricao+ "</p>" ;          
+    let content = "<h4>"+ocorrencia.titulo+ "</h4> <p>" +ocorrencia.descricao+ "</p>" ;          
  
-      this.addInfoWindow(marker, content);
+    this.addInfoWindow(marker, content);
   }
 
 }
