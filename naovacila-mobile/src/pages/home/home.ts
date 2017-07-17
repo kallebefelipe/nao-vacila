@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams  } from 'ionic-angular';
 import { OcorrenciaServicoProvider } from '../../providers/ocorrencia-servico/ocorrencia-servico';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -14,12 +14,14 @@ export class HomePage {
   map: any;
   ocorrencias: any;
  
-  constructor(public navCtrl: NavController, public ocorrenciaServico: OcorrenciaServicoProvider, public geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public ocorrenciaServico: OcorrenciaServicoProvider, public geolocation: Geolocation, public navParams: NavParams) {
     
   }
  
   ionViewDidLoad(){
     this.loadMap();  
+    console.log("INFO - valor lat e long" +  this.navParams.get("latitude") + " ," + this.navParams.get("longitude"));
+    
   }
  
   loadMap(){

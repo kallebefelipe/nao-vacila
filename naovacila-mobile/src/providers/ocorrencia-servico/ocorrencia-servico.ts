@@ -22,8 +22,21 @@ data: any;
       .catch(res=>{return Observable.throw(res)});
   }
 
-  salvarOcorrencia(titulo, descricao){
-    return this.http.post(apiOcorrenciaUrl, {titulo: titulo})
+  salvarOcorrencia(id_tipo, descricao, latitude, titulo, data, endereco, longitude, id_usuario, hora){
+    let ocorrencia = {
+      id_tipo: id_tipo, 
+      descricao: descricao, 
+      latitude: latitude, 
+      titulo: titulo, 
+      data: data, 
+      endereco: endereco, 
+      longitude: longitude, 
+      id_usuario: id_usuario, 
+      hora: hora 
+    }
+
+    console.log(JSON.stringify(ocorrencia));
+    return this.http.post(apiOcorrenciaUrl, JSON.stringify(ocorrencia))
     .map(res=>res.json())
     .catch(res=>{return Observable.throw(res)});
 

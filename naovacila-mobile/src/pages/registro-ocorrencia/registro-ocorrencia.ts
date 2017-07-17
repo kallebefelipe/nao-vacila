@@ -21,9 +21,15 @@ export class RegistroOcorrenciaPage {
   titulo:any;
   descricao:any;
   endereco:any;
+  id_tipoOcorrencia: any;
+  latitude: any;
+  longitude: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public ocorrenciaServico: OcorrenciaServicoProvider, private nativeGeocoder: NativeGeocoder) {
     
+    this.id_tipoOcorrencia = this.navParams.get("id_tipo");
+    console.log("INFO - id tipo ocorrencia é" + this.id_tipoOcorrencia);
+
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
@@ -57,10 +63,11 @@ export class RegistroOcorrenciaPage {
 
   salvarOcorrencia(){
     
-    this.ocorrenciaServico.salvarOcorrencia(this.titulo, this.descricao)
+    this.ocorrenciaServico.salvarOcorrencia(this.id_tipoOcorrencia, this.descricao, this.latitude, this.titulo, this.hoje, this.endereco, this.longitude, 1, this.hora)
     .subscribe(
         data => {
-          this.navCtrl.setRoot(HomePage);
+          console.log("INFO - sucesso ao salvar ocorrencia" + data );
+          this.navCtrl.setRoot(HomePage, {latitude: this.latitude, longitude: this.longitude});
           
         },
         err => {
@@ -106,7 +113,7 @@ export class RegistroOcorrenciaPage {
       });
       
       this.reverseGeocode(position.coords.latitude, position.coords.longitude);
-      
+
       }, (err) => {
       console.log(err);
     });
@@ -118,6 +125,10 @@ export class RegistroOcorrenciaPage {
         .then((result: NativeGeocoderReverseResult) => {
           console.log('The address is ' + result.street + ' in ' + result.countryCode + " " + JSON.stringify(result));
           this.endereco = result.street + ", " +result.houseNumber + " - " + result.district;
+
+          this.latitude = latitude;
+          this.longitude = longitude;
+      
         })
         .catch((error: any) => console.log("erro no geocoder reverso"+ error));
     

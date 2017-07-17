@@ -17,8 +17,8 @@ export class TipoOcorrenciaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  abrirregistroOcorrencia(){
-    this.navCtrl.push('RegistroOcorrenciaPage')
+  abrirregistroOcorrencia(id_tipocorrencia){
+    this.navCtrl.push('RegistroOcorrenciaPage', {id_tipo: id_tipocorrencia})
   }
 
   ionViewDidLoad() {
