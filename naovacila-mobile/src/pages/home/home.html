@@ -10,7 +10,7 @@
 <ion-content>
 
   <ion-fab right bottom >
-    <button ion-fab><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="dark"><ion-icon name="add"></ion-icon></button>
     
     <ion-fab-list side="top">
       <button ion-fab (click)="abrirRegistrarOcorrencia()">
@@ -29,6 +29,10 @@
       </button>
     </ion-fab-list>
  
+  </ion-fab>
+
+  <ion-fab  left bottom>
+    <button ion-fab mini color="light" (click)="centralizarMinhaLocalizacao()"><ion-icon name="compass"></ion-icon></button>
   </ion-fab>
 
   <div #map id="map"> </div>

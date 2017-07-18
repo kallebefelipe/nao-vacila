@@ -22,6 +22,7 @@ export class HomePage {
     this.loadMap();  
     console.log("INFO - valor lat e long" +  this.navParams.get("latitude") + " ," + this.navParams.get("longitude"));
     
+    
   }
  
   loadMap(){
@@ -29,7 +30,16 @@ export class HomePage {
     this.geolocation.getCurrentPosition().then((position) => {
       console.log('[INFO] posição atual: ' + position.coords.latitude + "," + position.coords.longitude);
       
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      let latLng;
+
+      if(this.navParams.get('latitude')){
+        latLng = new google.maps.LatLng(this.navParams.get('latitude'),this.navParams.get('longitude'));
+      }
+      else{
+        latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      }
+      
   
       let mapOptions = {
         center: latLng,
@@ -98,6 +108,15 @@ export class HomePage {
     let content = "<h4>"+ocorrencia.titulo+ "</h4> <p>" +ocorrencia.descricao+ "</p>" ;          
  
     this.addInfoWindow(marker, content);
+  }
+
+  centralizarMinhaLocalizacao(){
+    this.geolocation.getCurrentPosition().then((position) => {
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      this.map.setCenter(latLng);
+
+    })
+
   }
 
 }
