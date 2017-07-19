@@ -27,7 +27,7 @@ h1{
     height:30px;
 }
 
-.form {
+.formOcorrencia {
     padding-top: 60px;
     padding-left: 60px;
 }
@@ -69,3 +69,16 @@ h1{
     background-color: #F5F5F5;
     height: 100%
 }
+
+@media (min-width: 992px) {
+    .collapsed {
+        display: block;
+        margin-right: -25%; /* same width as sidebar */
+    } 
+}
+
+#row-main {
+    margin-left: 0;
+    margin-right: 0;
+}
+
