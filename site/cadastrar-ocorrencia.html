@@ -27,7 +27,7 @@
           </div>
         </nav>
         
-        <form id="eventForm" method="post" class="formOcorrencia">
+        <form id="eventForm" method="POST" name="myForm" class="formOcorrencia">
             <!-- Form Name -->
             <legend>Informações da Ocorrência</legend>
 
@@ -57,11 +57,13 @@
               <label for="idTipo">Tipo:</label>
               <select class="form-control" id="idTipo" required="">
                 <option></option>
-                <option>Assalto</option>
+                <option>Roubo</option>
                 <option>Furto</option>
                 <option>Sequestro</option>
-                <option>Arrastão</option>
-                <option>...</option>
+                <option>Arrombamento</option>
+                <option>Tiroteio</option>
+                <option>Homicídio</option>
+                <option>Tráfico</option>
               </select>
             </div>
             
@@ -72,7 +74,7 @@
             
             
             <div class="form-group">
-                <button type="submit" class="btn btn-default" id="btnSubmit">Registrar Ocorrência</button>
+                <button type="submit" class="btn btn-default" id="btnSubmit" onclick="submitform()">Registrar Ocorrência</button>
             </div>
             
         </form>
@@ -82,5 +84,6 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ&libraries=places&callback=initAutocomplete"async defer></script>
         <script src="js/loginFacebook.js"></script>
         <script src="js/autocomplete.js"></script>
+        <script src="js/json.js"></script>
     </body>
 </html>

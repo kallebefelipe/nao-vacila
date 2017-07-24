@@ -3,44 +3,12 @@ var infoWindow;
 
 // A variável markersData guarda a informação necessária a cada marcador
 // Para utilizar este código basta alterar a informação contida nesta variável
-var markersData = [
-   {
-        "id": 1,
-        "id_tipo": "1",
-        "descricao": "",
-        "latitude": -8.0264688,
-        "titulo": "Fui asaltado ao subir no onibus",
-        "data": "2017-06-29",
-        "endereco": "R. Padre Lemos, 30 - Casa Amarela, Recife - PE, Brasil",
-        "longitude": -34.917722,
-        "id_usuario": null,
-        "hora": "20:00:00"
-    },
-    {
-        "id": 2,
-        "id_tipo": "1",
-        "descricao": "Saindo da academia yes fit setubal, entrei no meu carro civic cinza ano 2008 KKP2501 dois elementos me abordaram e levaram meu carro junto com meus pertences",
-        "latitude": -8.1368627,
-        "titulo": "fui assaltado saindo da academia",
-        "data": "2017-06-29",
-        "endereco": "R. Copacabana, 388 - Boa Viagem, Recife - PE, 51030-590, Brasil",
-        "longitude": -34.9115769,
-        "id_usuario": null,
-        "hora": "21:30:00"
-    },
-    {
-        "id": 3,
-        "id_tipo": "1",
-        "descricao": "",
-        "latitude": -8.0601883,
-        "titulo": "Assaltado voltando da faculdade",
-        "data": "2017-06-28",
-        "endereco": "R. Sete de Setembro, 287-341 - Boa Vista, Recife - PE, Brasil",
-        "longitude": -34.8828425,
-        "id_usuario": null,
-        "hora": "22:15:00"
-    }
-];
+var markersData = new Array();
+
+//GET JSON OCORRENCIAS
+$.getJSON( "https://webserver-nao-vacila.herokuapp.com/ocorrencia/?format=json", function( data ) {
+    markersData = data;
+})
 
 
 function initialize() {
@@ -83,7 +51,6 @@ function displayMarkers(){
       var titulo = markersData[i].titulo;
       var data = markersData[i].data;
       var endereco = markersData[i].endereco;
-      var codPostal = markersData[i].codPostal;
 
       createMarker(latlng, titulo, data, endereco);
 
