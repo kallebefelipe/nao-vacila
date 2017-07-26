@@ -90,3 +90,22 @@ function createMarker(latlng, titulo, data, endereco){
       infoWindow.open(map, marker);
    });
 }
+
+// Função que cria o mapa de calor
+function createHeatMap(){
+
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0; i < markersData.length; i++) {
+
+        var latlng = new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude);
+    }
+    bounds.extend(latlng)
+    var heatmap = new google.maps.visualization.HeatmapLayer({
+        data: markersData
+    });
+    heatmap.setMap(heatmap.getMap() ? null : markersData);
+
+
+    map.fitBounds(bounds);
+
+}
