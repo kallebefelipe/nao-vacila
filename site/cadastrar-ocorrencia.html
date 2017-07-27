@@ -27,35 +27,35 @@
           </div>
         </nav>
         
-        <form id="eventForm" method="POST" name="myForm" class="formOcorrencia">
+        <form id="myForm" method="POST"  name="myForm" class="formOcorrencia">
             <!-- Form Name -->
             <legend>Informações da Ocorrência</legend>
 
             <div class="form-inline">
                 <div class="form-group">
                   <label for="idTitulo">Título:</label>  
-                  <input id="idTitulo" type="text" class="form-control" required="">
+                  <input id="titulo" type="text" class="form-control" name="titulo" required="">
                 </div>
                 
                 <div class="form-group">
                   <label for="idData">Data:</label>  
-                  <input id="idData" type="date" class="form-control" required="">
+                  <input id="data" type="date" class="form-control" name="data" required="">
                 </div>
 
                 <div class="form-group">
                   <label for="idHora">Hora:</label>  
-                  <input id="idHora" type="time" class="form-control" required="">
+                  <input id="hora" type="time" class="form-control" name="hora" required="">
                 </div>
             </div>
             
             <div class="form-group">
               <label for="idEndereco">Endereço:</label>  
-              <input id="idEndereco" onFocus="geolocate()" type="text" class="form-control" required="">
+              <input id="endereco" onFocus="geolocate()" type="text" class="form-control" name="endereco" required="">
             </div>
             
             <div class="form-group">
               <label for="idTipo">Tipo:</label>
-              <select class="form-control" id="idTipo" required="">
+              <select class="form-control" id="tipo" required="" name="tipo">
                 <option></option>
                 <option>Roubo</option>
                 <option>Furto</option>
@@ -69,12 +69,15 @@
             
             <div class="form-group">
               <label for="idDescricao">Descrição:</label>
-              <textarea class="form-control" rows="5" id="idDescricao" required=""></textarea>
+              <textarea class="form-control" rows="5" id="descricao" name="descricao" required=""></textarea>
             </div>
+            
+            <input type="hidden" id="latitude" name="latitude" />
+            <input type="hidden" id="longitude" name="longitude" />
             
             
             <div class="form-group">
-                <button type="submit" class="btn btn-default" id="btnSubmit" onclick="submitform()">Registrar Ocorrência</button>
+                <button type="submit" class="btn btn-default" id="btnSubmit">Registrar Ocorrência</button>
             </div>
             
         </form>
@@ -84,6 +87,6 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ&libraries=places&callback=initAutocomplete"async defer></script>
         <script src="js/loginFacebook.js"></script>
         <script src="js/autocomplete.js"></script>
-        <script src="js/json.js"></script>
+        <script src="js/enviarOcorrencia.js"></script>
     </body>
 </html>

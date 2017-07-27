@@ -7,6 +7,7 @@
           // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
           var placeSearch, autocomplete;
+          var geocoder;   
           var componentForm = {
             street_number: 'short_name',
             route: 'long_name',
@@ -20,7 +21,7 @@
             // Create the autocomplete object, restricting the search to geographical
             // location types.
             autocomplete = new google.maps.places.Autocomplete(
-                /** @type {!HTMLInputElement} */(document.getElementById('idEndereco')),
+                /** @type {!HTMLInputElement} */(document.getElementById('endereco')),
                 {types: ['geocode']});
 
             // When the user selects an address from the dropdown, populate the address
@@ -31,12 +32,12 @@
           function fillInAddress() {
             // Get the place details from the autocomplete object.
             var place = autocomplete.getPlace();
-
+            laglng();
             for (var component in componentForm) {
               document.getElementById(component).value = '';
               document.getElementById(component).disabled = false;
             }
-
+              
             // Get each component of the address from the place details
             // and fill the corresponding field on the form.
             for (var i = 0; i < place.address_components.length; i++) {
@@ -65,3 +66,22 @@
               });
             }
           }
+
+
+
+        function laglng() {
+            geocoder = new google.maps.Geocoder(); 
+            geocoder.geocode({ 'address': document.getElementById('endereco').value + ', Brasil', 'region': 'BR' }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    var latitude = results[0].geometry.location.lat();
+                    var longitude = results[0].geometry.location.lng();
+                    $('#latitude').val(latitude);
+                    $('#longitude').val(longitude);
+                }
+            }
+            });
+        }
+
+
+
