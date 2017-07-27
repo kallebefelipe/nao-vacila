@@ -64,7 +64,6 @@ function displayMarkers(){
    // a API através da sua função fitBounds vai redefinir o nível do zoom
    // e consequentemente a área do mapa abrangida.
    map.fitBounds(bounds);
-   createHeatMap()
 }
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
@@ -95,19 +94,42 @@ function createMarker(latlng, titulo, data, endereco){
 
 // Função que cria o mapa de calor
 function createHeatMap(){
-
-    var bounds = new google.maps.LatLngBounds();
-    for (var i = 0; i < markersData.length; i++) {
-
-        var latlng = new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude);
-    }
-    bounds.extend(latlng)
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-        data: markersData
+    heatmap = new google.maps.visualization.HeatmapLayer({
+        data: markersData,
+        map: map
     });
-    heatmap.setMap(heatmap.getMap() ? null : markersData);
+}
 
+createHeatMap();
 
-    map.fitBounds(bounds);
+function toggleHeatmap() {
+    heatmap.setMap(heatmap.getMap() ? null : map);
+}
 
+function changeGradient() {
+    var gradient = [
+        'rgba(0, 255, 255, 0)',
+        'rgba(0, 255, 255, 1)',
+        'rgba(0, 191, 255, 1)',
+        'rgba(0, 127, 255, 1)',
+        'rgba(0, 63, 255, 1)',
+        'rgba(0, 0, 255, 1)',
+        'rgba(0, 0, 223, 1)',
+        'rgba(0, 0, 191, 1)',
+        'rgba(0, 0, 159, 1)',
+        'rgba(0, 0, 127, 1)',
+        'rgba(63, 0, 91, 1)',
+        'rgba(127, 0, 63, 1)',
+        'rgba(191, 0, 31, 1)',
+        'rgba(255, 0, 0, 1)'
+    ]
+    heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+}
+
+function changeRadius() {
+    heatmap.set('radius', heatmap.get('radius') ? null : 20);
+}
+
+function changeOpacity() {
+    heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
 }
