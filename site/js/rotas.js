@@ -38,21 +38,36 @@ function initialize() {
 
 initialize();
 
+
+var enderecoPartida;
+var enderecoChegada; 
+
+var dataRota;
+
+/*$.getJSON( "http://webserver-nao-vacila.herokuapp.com/gerar_rota/?latitude_origem=-8.0264688&longitude_origem=-34.9177227&latitude_destino=-8.1368627&longitude_destino=-34.9115769", function( data ) {
+    dataRota = data;
+    
+})*/
+
 $("form").submit(function(event) {
 	event.preventDefault();
+    
 	
-	var enderecoPartida = $("#txtEnderecoPartida").val();
-	var enderecoChegada = $("#txtEnderecoChegada").val();
-	
-	var request = {
-		origin: enderecoPartida,
-		destination: enderecoChegada,
-		travelMode: google.maps.TravelMode.DRIVING
-	};
-	
-	directionsService.route(request, function(result, status) {
-		if (status == google.maps.DirectionsStatus.OK) {
-			directionsDisplay.setDirections(result);
-		}
-	});
+    enderecoPartida = $("#txtEnderecoPartida").val();
+    enderecoChegada = $("#txtEnderecoChegada").val();
+
+    var request = {
+        origin: enderecoPartida,
+        destination: enderecoChegada,
+        travelMode: google.maps.TravelMode.DRIVING,
+        provideRouteAlternatives: true
+    };
+
+    directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+            alert(JSON.stringify(result));
+            //alert(JSON.stringify(dataRota));
+            directionsDisplay.setDirections(result);
+        }
+    });
 });

@@ -8,6 +8,7 @@ var markersData = new Array();
 //GET JSON OCORRENCIAS
 $.getJSON( "https://webserver-nao-vacila.herokuapp.com/ocorrencia/?format=json", function( data ) {
     markersData = data;
+    displayMarkers();
 })
 
 
@@ -31,7 +32,7 @@ function initialize() {
 
    // Chamada para a função que vai percorrer a informação
    // contida na variável markersData e criar os marcadores a mostrar no mapa
-   displayMarkers();
+   //displayMarkers();
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -63,6 +64,7 @@ function displayMarkers(){
    // a API através da sua função fitBounds vai redefinir o nível do zoom
    // e consequentemente a área do mapa abrangida.
    map.fitBounds(bounds);
+   createHeatMap()
 }
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
