@@ -9,6 +9,7 @@ var markersData = new Array();
 $.getJSON( "https://webserver-nao-vacila.herokuapp.com/ocorrencia/?format=json", function( data ) {
     markersData = data;
     displayMarkers();
+    createHeatMap();
 })
 
 
@@ -95,12 +96,18 @@ function createMarker(latlng, titulo, data, endereco){
 // Função que cria o mapa de calor
 function createHeatMap(){
     heatmap = new google.maps.visualization.HeatmapLayer({
-        data: markersData,
+        data: getPoints(),
         map: map
     });
 }
 
-createHeatMap();
+function getPoints(){
+    for (var i = 0; i < markersData.length; i++){
+
+        var latlng = new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude);
+        }
+    return latlng;
+}
 
 function toggleHeatmap() {
     heatmap.setMap(heatmap.getMap() ? null : map);
