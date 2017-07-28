@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams  } from 'ionic-angular';
 import { OcorrenciaServicoProvider } from '../../providers/ocorrencia-servico/ocorrencia-servico';
 import { Geolocation } from '@ionic-native/geolocation';
+import { CriarRotaPage } from '../criar-rota/criar-rota';
 
 declare var google;
 
@@ -13,16 +14,29 @@ export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   ocorrencias: any;
+  loading= true;
  
   constructor(public navCtrl: NavController, public ocorrenciaServico: OcorrenciaServicoProvider, public geolocation: Geolocation, public navParams: NavParams) {
+    this.loadMap(); 
     
   }
  
   ionViewDidLoad(){
-    this.loadMap();  
+    // this.loadMap();  
+    this.loading=true;
     console.log("INFO - valor lat e long" +  this.navParams.get("latitude") + " ," + this.navParams.get("longitude"));
+    this.carregarRota();
     
-    
+  }
+
+  carregarRota(){
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    var directionsService = new google.maps.DirectionsService();
+
+    directionsDisplay.setMap(this.map);
+
+    directionsDisplay.setDirections(this.navParams.get("requisicaoRota"));
+  
   }
  
   loadMap(){
@@ -43,7 +57,7 @@ export class HomePage {
   
       let mapOptions = {
         center: latLng,
-        zoom: 15,
+        zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         zoomControl: false,
         streetViewControl: false,
@@ -53,6 +67,39 @@ export class HomePage {
       
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
       this.carregarOcorrencias();
+
+      let latLngMarcador1 = new google.maps.LatLng(-8.0264688, -34.9177227);
+      let latLngMarcador2 = new google.maps.LatLng(-8.1368627, -34.9115769);
+    
+      // let marker = new google.maps.Marker({
+      //     map: this.map,
+      //     animation: google.maps.Animation.DROP,
+      //     position: latLngMarcador1
+      // });
+
+      // let marker2 = new google.maps.Marker({
+      //     map: this.map,
+      //     animation: google.maps.Animation.DROP,
+      //     position: latLngMarcador2
+      // });
+      
+      // var directionsDisplay = new google.maps.DirectionsRenderer();
+      // var directionsService = new google.maps.DirectionsService();
+
+      // directionsDisplay.setMap(this.map);
+
+      // var request = {
+      //   origin:latLngMarcador1,
+      //   destination:latLngMarcador2,
+      //   travelMode: 'DRIVING'
+      // };
+
+      // directionsService.route(request, function(response, status) {
+      //   console.log ('INFO - response do directionService' + JSON.stringify(response))
+      //   if (status == 'OK') {
+      //     directionsDisplay.setDirections(response);
+      //   }
+      // });
       
     }, (err) =>{
       console.log('[ERRO] ao carregar localização' + err);
@@ -71,7 +118,10 @@ export class HomePage {
         err => {
           console.log('[ERRO] ao carregar ocorrências no serviço' + err);
         },
-        ()=> console.log("serviço finalizado")
+        ()=> {
+          this.loading = false;
+          console.log("serviço finalizado")
+        }
       );
   }
 
@@ -80,7 +130,7 @@ export class HomePage {
   }
 
   abrirCriarRota(){
-    this.navCtrl.push('CriarRotaPage');
+    this.navCtrl.push(CriarRotaPage);
   }
 
   addInfoWindow(marker, content){

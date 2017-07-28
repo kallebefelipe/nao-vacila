@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { RadarPage } from '../pages/radar/radar';
 import { ConfigPage } from '../pages/config/config';
 import { TabsPage } from '../pages/tabs/tabs';
+import { CriarRotaPage } from '../pages/criar-rota/criar-rota';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,6 +19,7 @@ import { LoginPage } from '../pages/login/login';
 import { OcorrenciaServicoProvider } from '../providers/ocorrencia-servico/ocorrencia-servico';
 import { HttpModule } from '@angular/http';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { RotaServicoProvider } from '../providers/rota-servico/rota-servico';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
     RadarPage,
     ConfigPage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    CriarRotaPage
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
     ConfigPage,
     TabsPage,
     LoginPage,
+    CriarRotaPage
   ],
   providers: [
     StatusBar,
@@ -53,7 +57,8 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResul
     GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OcorrenciaServicoProvider,
-    NativeGeocoder
+    NativeGeocoder,
+    RotaServicoProvider
   ]
 })
 export class AppModule {}
