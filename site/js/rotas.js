@@ -1,6 +1,7 @@
 var map;
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
+var regioesData = new Array();
 
 function initialize() {	
 	directionsDisplay = new google.maps.DirectionsRenderer();
@@ -42,16 +43,8 @@ initialize();
 var enderecoPartida;
 var enderecoChegada; 
 
-var dataRota;
-
-/*$.getJSON( "http://webserver-nao-vacila.herokuapp.com/gerar_rota/?latitude_origem=-8.0264688&longitude_origem=-34.9177227&latitude_destino=-8.1368627&longitude_destino=-34.9115769", function( data ) {
-    dataRota = data;
-    
-})*/
-
 $("form").submit(function(event) {
 	event.preventDefault();
-    
 	
     enderecoPartida = $("#txtEnderecoPartida").val();
     enderecoChegada = $("#txtEnderecoChegada").val();
@@ -65,9 +58,28 @@ $("form").submit(function(event) {
 
     directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            alert(JSON.stringify(result));
-            //alert(JSON.stringify(dataRota));
+			$.ajax({
+				type: "PUT",
+				url: "https://webserver-nao-vacila.herokuapp.com/calcular_periculosidade/",
+				data: JSON.stringify(result),
+				dataType: "json",
+				contentType : "application/json",
+				success: function(result1){
+					regioesData = JSON.stringify(result1);
+					regioes();
+				}
+			});
             directionsDisplay.setDirections(result);
         }
     });
+	
 });
+
+function regioes(){
+	for (var i = 0; i < regioesData.length; i++){
+		if(regioesData[i] == 'r' && regioesData[i+1] == 'e' && regioesData[i+2] == 'g' && regioesData[i+3] == 'i'){
+		   alert(regioesData[i+19]);
+		}
+   }
+}
+	
