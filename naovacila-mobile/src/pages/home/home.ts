@@ -25,7 +25,7 @@ export class HomePage {
     // this.loadMap();  
     this.loading=true;
     console.log("INFO - valor lat e long" +  this.navParams.get("latitude") + " ," + this.navParams.get("longitude"));
-    this.carregarRota();
+   
     
   }
 
@@ -34,8 +34,10 @@ export class HomePage {
     var directionsService = new google.maps.DirectionsService();
 
     directionsDisplay.setMap(this.map);
+    var test = this.navParams.get("requisicaoRota");
+    console.log('ENTROU NO METODO CARREGARROTA' + test);
 
-    directionsDisplay.setDirections(this.navParams.get("requisicaoRota"));
+    directionsDisplay.setDirections(test);
   
   }
  
@@ -66,40 +68,41 @@ export class HomePage {
       }
       
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.carregarOcorrencias();
+        this.carregarOcorrencias();
+        //this.carregarRota();
 
       let latLngMarcador1 = new google.maps.LatLng(-8.0264688, -34.9177227);
       let latLngMarcador2 = new google.maps.LatLng(-8.1368627, -34.9115769);
     
-      // let marker = new google.maps.Marker({
-      //     map: this.map,
-      //     animation: google.maps.Animation.DROP,
-      //     position: latLngMarcador1
-      // });
+      let marker = new google.maps.Marker({
+          map: this.map,
+          animation: google.maps.Animation.DROP,
+          position: latLngMarcador1
+      });
 
-      // let marker2 = new google.maps.Marker({
-      //     map: this.map,
-      //     animation: google.maps.Animation.DROP,
-      //     position: latLngMarcador2
-      // });
+      let marker2 = new google.maps.Marker({
+          map: this.map,
+          animation: google.maps.Animation.DROP,
+          position: latLngMarcador2
+      });
       
-      // var directionsDisplay = new google.maps.DirectionsRenderer();
-      // var directionsService = new google.maps.DirectionsService();
+      var directionsDisplay = new google.maps.DirectionsRenderer();
+      var directionsService = new google.maps.DirectionsService();
 
-      // directionsDisplay.setMap(this.map);
+      directionsDisplay.setMap(this.map);
 
-      // var request = {
-      //   origin:latLngMarcador1,
-      //   destination:latLngMarcador2,
-      //   travelMode: 'DRIVING'
-      // };
+      var request = {
+        origin:latLngMarcador1,
+        destination:latLngMarcador2,
+        travelMode: 'DRIVING'
+      };
 
-      // directionsService.route(request, function(response, status) {
-      //   console.log ('INFO - response do directionService' + JSON.stringify(response))
-      //   if (status == 'OK') {
-      //     directionsDisplay.setDirections(response);
-      //   }
-      // });
+      directionsService.route(request, function(response, status) {
+        console.log ('INFO - response do directionService' + JSON.stringify(response))
+        if (status == 'OK') {
+          directionsDisplay.setDirections(response);
+        }
+      });
       
     }, (err) =>{
       console.log('[ERRO] ao carregar localização' + err);
@@ -112,7 +115,7 @@ export class HomePage {
         data => {
           this.ocorrencias = data;
           for(var i = 0; i<this.ocorrencias.length; i++){
-            this.adicionarMarcador(this.ocorrencias[i]);
+            //this.adicionarMarcador(this.ocorrencias[i]);
           }
         },
         err => {
@@ -151,7 +154,7 @@ export class HomePage {
     
     let marker = new google.maps.Marker({
         map: this.map,
-        animation: google.maps.Animation.DROP,
+        //animation: google.maps.Animation.DROP,
         position: latLng
       });
  

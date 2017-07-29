@@ -17,6 +17,7 @@ export class SelecionarRotaPage {
   longitudeDest: any;
   rotas:any;
   request:any;
+  dto:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public rotaServico: RotaServicoProvider, public geolocation: Geolocation) {
     this.latitudeDest = this.navParams.get("latitude");
@@ -32,6 +33,7 @@ export class SelecionarRotaPage {
       .subscribe(
         data => {
           this.request = data;
+          this.dto = this.request;
           if (this.request.status == 'OK'){
 
              this.rotas = data.routes;
@@ -94,13 +96,17 @@ export class SelecionarRotaPage {
   }
 
   selecionarRota(rota){
-    var  newRequest = this.request;
-    newRequest.routes.lenght = 0;
-    newRequest.routes.push(rota);
+    this.dto.routes.length = 0;
+    console.log('INFO: Ojeto dto sem rotas ' + JSON.stringify(this.dto));
+    delete rota.regioes_perigosas;
+    console.log('INFO: rota sem regioes perigosas ' + JSON.stringify(rota));
+    this.dto.routes.push(rota);
+    //delete newRequest.routes.regioes_perigosas;
+    //for(var i=0; i<this.dto.routes.l)
 
-    console.log('INFO - rota selecionada com sucesso ' + JSON.stringify(newRequest));
+    console.log('INFO - rota selecionada com sucesso ' + JSON.stringify(this.dto));
 
-    this.navCtrl.setRoot(HomePage, {requisicaoRota: newRequest});
+    this.navCtrl.setRoot(HomePage, {requisicaoRota: this.dto});
   }
 
 }
