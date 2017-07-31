@@ -72,13 +72,18 @@ $("form").submit(function(event) {
             directionsDisplay.setDirections(result);
         }
     });
-	
 });
 
 function regioes(){
+	var p,t;
+	var count = 1;
 	for (var i = 0; i < regioesData.length; i++){
 		if(regioesData[i] == 'r' && regioesData[i+1] == 'e' && regioesData[i+2] == 'g' && regioesData[i+3] == 'i'){
-		   alert(regioesData[i+19]);
+			p = document.createElement("p");
+			t = document.createTextNode("Rota "+ count + " tem " + regioesData[i+19]+ " ocorrências");
+			p.appendChild(t);
+			document.getElementById("regioes-perigosas").appendChild(p);
+			count++;
 		}
    }
 }

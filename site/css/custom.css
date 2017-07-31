@@ -48,15 +48,15 @@ h1{
   width: 100%;
 }
 
-#idEndereco {
+#endereco {
     width: 30%;
 }
 
-#idTipo {
+#tipo {
     width: 30%;
 }
 
-#idDescricao {
+#descricao {
     width: 40%;
 }
 
