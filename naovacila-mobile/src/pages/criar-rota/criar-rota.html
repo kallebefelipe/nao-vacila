@@ -16,6 +16,11 @@
       <ion-icon name="time" item-start></ion-icon>
         Histórico
     </ion-item>
+
+    <ion-item *ngFor = "let item of listaHistorico" tappable (click)="chooseItem(item)">
+      {{item}}
+    </ion-item>
+
   </ion-list>
 </ion-content>
 

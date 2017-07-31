@@ -36,6 +36,12 @@
     <button ion-fab mini color="light" (click)="centralizarMinhaLocalizacao()"><ion-icon name="locate"></ion-icon></button>
   </ion-fab>
 
+  <ion-card *ngIf = 'exibirPanelDirection'>
+    <ion-card-content>
+      <div #directionsPanel></div>
+    </ion-card-content>
+  </ion-card>
+
   <div #map id="map"> </div>
 
 </ion-content>

@@ -8,9 +8,15 @@ a[href^="https://maps.google.com/maps"]{display:none !important}
 page-home {
 	text-align: center;
 	#map {
-		height: 100%;
-		z-index: 9999;
-	}
+        width: 100%;
+        height: 100%;
+    }
+    ion-card {
+        max-height: 200px;
+        overflow: scroll;
+        position: absolute;
+        z-index: 1;
+    }
 }
 
 ion-app._gmaps_cdv_ .nav-decor{
@@ -50,3 +56,4 @@ ion-app._gmaps_cdv_ .nav-decor{
     background-color: black;
     padding: 3px;
 }
+

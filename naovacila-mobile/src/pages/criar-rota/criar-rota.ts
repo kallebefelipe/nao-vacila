@@ -1,6 +1,8 @@
 import { Component, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
+import { Storage } from '@ionic/storage';
+import { RotaServicoProvider } from '../../providers/rota-servico/rota-servico';
 
 declare var google;
 
@@ -13,18 +15,32 @@ export class CriarRotaPage {
   autocompleteItems;
   autocomplete;
   service = new google.maps.places.AutocompleteService();
+  listaHistorico = [];
  
-  constructor (public viewCtrl: ViewController, private zone: NgZone, public nativeGeocoder: NativeGeocoder, public navCtrl: NavController) {
+  constructor (public viewCtrl: ViewController, private zone: NgZone
+    ,public nativeGeocoder: NativeGeocoder, public navCtrl: NavController
+    , private nativeStorage: Storage, public rotaServico: RotaServicoProvider) {
     this.autocompleteItems = [];
     this.autocomplete = {
       query: ''
     };
+
+  }
+
+  ionViewDidLoad(){
+    this.rotaServico.carregarHistoricoRotas()
+    .then((data)=>{
+      if(data != null){
+        this.listaHistorico = JSON.parse(data);
+      }
+    });
   }
  
   chooseItem(item: any) {
     this.nativeGeocoder.forwardGeocode(item)
       .then((coordinates: NativeGeocoderForwardResult) => {
         console.log('The coordinates are latitude=' + coordinates.latitude + ' and longitude=' + coordinates.longitude)
+        this.rotaServico.salvarRotaNoHistorico(item);
         this.navCtrl.push('SelecionarRotaPage', {latitude: coordinates.latitude, longitude: coordinates.longitude})
       })      
       .catch((error: any) => console.log(error));

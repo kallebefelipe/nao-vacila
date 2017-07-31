@@ -12,9 +12,11 @@ declare var google;
 })
 export class HomePage {
   @ViewChild('map') mapElement: ElementRef;
+  @ViewChild('directionsPanel') directionsPanel: ElementRef;
   map: any;
   ocorrencias: any;
   loading= true;
+  exibirPanelDirection= false;
  
   constructor(public navCtrl: NavController, public ocorrenciaServico: OcorrenciaServicoProvider, public geolocation: Geolocation, public navParams: NavParams) {
     this.loadMap(); 
@@ -25,19 +27,22 @@ export class HomePage {
     // this.loadMap();  
     this.loading=true;
     console.log("INFO - valor lat e long" +  this.navParams.get("latitude") + " ," + this.navParams.get("longitude"));
+    if(this.navParams.get("requisicaoRota")){
+      this.exibirPanelDirection=true;
+    }
    
     
   }
 
-  carregarRota(){
+  carregarRota(rota){
     var directionsDisplay = new google.maps.DirectionsRenderer();
     var directionsService = new google.maps.DirectionsService();
+    directionsDisplay.setPanel(this.directionsPanel.nativeElement);
 
     directionsDisplay.setMap(this.map);
-    var test = this.navParams.get("requisicaoRota");
-    console.log('ENTROU NO METODO CARREGARROTA' + test);
+    console.log('ENTROU NO METODO CARREGARROTA' + rota);
 
-    directionsDisplay.setDirections(test);
+    directionsDisplay.setDirections(rota);
   
   }
  
@@ -69,41 +74,16 @@ export class HomePage {
       
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
         this.carregarOcorrencias();
-        //this.carregarRota();
+        if (this.navParams.get("requisicaoRota")){
+          this.carregarRota(this.navParams.get("requisicaoRota"));
+        }
 
-      let latLngMarcador1 = new google.maps.LatLng(-8.0264688, -34.9177227);
-      let latLngMarcador2 = new google.maps.LatLng(-8.1368627, -34.9115769);
-    
-      let marker = new google.maps.Marker({
-          map: this.map,
-          animation: google.maps.Animation.DROP,
-          position: latLngMarcador1
-      });
-
-      let marker2 = new google.maps.Marker({
-          map: this.map,
-          animation: google.maps.Animation.DROP,
-          position: latLngMarcador2
-      });
-      
       var directionsDisplay = new google.maps.DirectionsRenderer();
-      var directionsService = new google.maps.DirectionsService();
+      
 
       directionsDisplay.setMap(this.map);
-
-      var request = {
-        origin:latLngMarcador1,
-        destination:latLngMarcador2,
-        travelMode: 'DRIVING'
-      };
-
-      directionsService.route(request, function(response, status) {
-        console.log ('INFO - response do directionService' + JSON.stringify(response))
-        if (status == 'OK') {
-          directionsDisplay.setDirections(response);
-        }
-      });
       
+
     }, (err) =>{
       console.log('[ERRO] ao carregar localização' + err);
     });

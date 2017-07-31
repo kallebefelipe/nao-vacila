@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
-import { NativeStorage } from '@ionic-native/native-storage';
+// import { NativeStorage } from '@ionic-native/native-storage';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { RadarPage } from '../pages/radar/radar';
@@ -20,6 +21,7 @@ import { OcorrenciaServicoProvider } from '../providers/ocorrencia-servico/ocorr
 import { HttpModule } from '@angular/http';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { RotaServicoProvider } from '../providers/rota-servico/rota-servico';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { RotaServicoProvider } from '../providers/rota-servico/rota-servico';
     IonicModule.forRoot(MyApp, {
       backButtonText: 'voltar'
     }),
+    IonicStorageModule.forRoot(),
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -52,7 +55,6 @@ import { RotaServicoProvider } from '../providers/rota-servico/rota-servico';
     StatusBar,
     SplashScreen,
     Geolocation,
-    NativeStorage,
     Facebook,
     GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
