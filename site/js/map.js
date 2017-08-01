@@ -104,7 +104,7 @@ function createHeatMap(){
 function getPoints(){
     for (var i = 0; i < markersData.length; i++){
 
-        var latlng = new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude);
+        var latlng = [new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude)];
         }
     return latlng;
 }
@@ -134,7 +134,7 @@ function changeGradient() {
 }
 
 function changeRadius() {
-    heatmap.set('radius', heatmap.get('radius') ? null : 20);
+    heatmap.set('radius', heatmap.get('radius') ? null : 100);
 }
 
 function changeOpacity() {
