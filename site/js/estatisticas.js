@@ -1,11 +1,12 @@
 var estatisticasData = new Array();
 var bairros = new Array();
+var quantidadeOcorrencias = new Array();
 
 //GET JSON ESTATISTICAS
-/*$.getJSON( "https://webserver-nao-vacila.herokuapp.com/estatisticas/", function( data ) {
+$.getJSON( "https://webserver-nao-vacila.herokuapp.com/estatisticas/", function( data ) {
     estatisticasData = data;
 	bairrosOcorrencias();
-})*/
+})
 
 window.onload = function () {
 	var chartMes = new CanvasJS.Chart("chartContainerMes",
@@ -61,16 +62,20 @@ window.onload = function () {
         chartTipo.render();
 }
 
-function bairrosOcorrencias() {//adicionar a var "bairros" os 5 bairros com mais ocorrencias FALTA CORRIGIR
-	var countBairros = 0;
+function bairrosOcorrencias() {//FALTA TESTAR
 	var maior = 0;
-	for (var i = 0; i < estatisticasData.length; i++){
-		if(estatisticasData[i] >= maior){
-			bairros[countBairros] = estatisticasData[i];
-		   	maior = estatisticasData[i];
-			countBairros++;
+	var posicaoBairro;
+	for(var x = 0; x < 5; x++){
+		for (var i = 0; i < estatisticasData.length; i++){
+			var numeroOcorrencias = estatisticasData[i].quantidade;
+			if(numeroOcorrencias >= maior){
+				posicaoBairro = i;
+				maior = numeroOcorrencias;
+			}
 		}
-   }
+		bairros[x] = estatisticasData[posicaoBairro].bairro;
+		quantidadeOcorrencias[x] = estatisticasData[posicaoBairro].quantidade;
+	}
 	criarTabela();
 }
 

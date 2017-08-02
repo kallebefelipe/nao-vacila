@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { IonicStorageModule } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { HomePage } from '../pages/home/home';
 import { RadarPage } from '../pages/radar/radar';
@@ -21,6 +22,7 @@ import { OcorrenciaServicoProvider } from '../providers/ocorrencia-servico/ocorr
 import { HttpModule } from '@angular/http';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { RotaServicoProvider } from '../providers/rota-servico/rota-servico';
+import { NoticiaProvider } from '../providers/noticia/noticia';
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import { RotaServicoProvider } from '../providers/rota-servico/rota-servico';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     OcorrenciaServicoProvider,
     NativeGeocoder,
-    RotaServicoProvider
+    RotaServicoProvider,
+    NoticiaProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}
