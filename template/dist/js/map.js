@@ -20,7 +20,6 @@ function initialize() {
       mapTypeId: 'roadmap',
    };
 
-
    map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
    // cria a nova Info Window com referência à variável infowindow
