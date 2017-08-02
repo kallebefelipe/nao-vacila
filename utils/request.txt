@@ -1,0 +1,5 @@
+alternatives=true
+[-8.0264688, -34.917722]
+ipdb> coordenadas[1]
+[-8.1368627, -34.9115769]
+https://maps.googleapis.com/maps/api/directions/json?origin=-8.0264688,-34.917722&destination=-8.1368627,-34.9115769&alternatives=true,
