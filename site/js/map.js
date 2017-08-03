@@ -102,9 +102,9 @@ function createHeatMap(){
 }
 
 function getPoints(){
+    var latlng = new Array();
     for (var i = 0; i < markersData.length; i++){
-
-        var latlng = [new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude)];
+         latlng.push( new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude));
         }
     return latlng;
 }
