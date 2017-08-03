@@ -5,20 +5,23 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GerarARFF {
 	private String classe;
+	private List<String> classes = new ArrayList<String>();
 	private String[] atributos = {"crime", "crimes", "polícia", "tiro", "tiros", "tiroteio", "disparo",
 			"disparos", "arrastão", "baleado", "baleada", "morto", "morta", "roubo", "celular", "arma",
 			"assalto", "assaltos", "sequestro", "sequestros", "estupro", "estuprada","faca", "pedrada",
 			"facada", "paulada", "fuga", "suspeitos", "bala", "suspeito"};
-	private String nomesClasse ="@attribute 'Class' {'homicídio','sequestro','assalto'}";
 	
 	public void gerar(String TXT){
 		String dadoCrimes = "texto_crimes";
 		try {
 			FileReader arq = new FileReader(TXT);
 			BufferedReader lerArq = new BufferedReader(arq);
+			BufferedReader lerArq2 = lerArq;
 			FileWriter arqS = new FileWriter(dadoCrimes + ".arff");
 			PrintWriter criarArq = new PrintWriter(arqS);
 			
@@ -28,14 +31,28 @@ public class GerarARFF {
 				criarArq.append("@attribute " + this.atributos[i] + " numeric\n");
 				i++;
 			}
-			criarArq.append(nomesClasse + "\n");
+			
+			extrairClasses(lerArq);
+			
+			criarArq.append("@attribute 'Class' {");
+			i = 0;
+			while(i < classes.size()){
+				criarArq.append("'" + classes.get(i) + "'");
+				i++;
+				if(i == classes.size()){
+					criarArq.append("}");
+				}else{
+					criarArq.append(",");
+				}
+			}
+			criarArq.append("\n");
 			
 			criarArq.append("\n@data\n");
-			String texto = lerArq.readLine();
+			String texto = lerArq2.readLine();
 			while(texto != null){
 				contarAtributos(limparTexto(texto),criarArq);
 				criarArq.append(this.classe + "\n");
-				texto = lerArq.readLine();
+				texto = lerArq2.readLine();
 			}
 			arq.close();
 			arqS.close();
@@ -109,6 +126,48 @@ public class GerarARFF {
 			iAtr++;
 			arq.append(String.valueOf(apareceAtr));
 			arq.append(", ");
+		}
+	}
+	private void extrairClasses(BufferedReader br){
+		try {
+			String linha = br.readLine();
+			while(linha != null){
+				int i = 0;
+				char c = linha.charAt(i);
+				while(i < linha.length()){
+					if(c == '/'){
+						i++;
+						c = linha.charAt(i);
+						if(c == '/'){
+							i++;
+							linha.charAt(i);
+							String cl = "";
+							while(i < linha.length()){
+								cl = cl + linha.charAt(i);
+								i++;
+							}
+							int j = 0;
+							boolean existe = false;
+							while(j < classes.size()){
+								if(cl == classes.get(j)){
+									existe = true;
+								}
+								j++;
+							}
+							if(!existe)
+								classes.add(cl);
+						}
+					}else{
+						i++;
+						c = linha.charAt(i);
+					}
+					
+				}
+				linha = br.readLine();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
