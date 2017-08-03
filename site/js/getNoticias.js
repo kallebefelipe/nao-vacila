@@ -9,17 +9,17 @@ $.getJSON( "http://naovacila.azurewebsites.net/api/noticia", function( data ) {
 
 function noticias() {
 	for (var i = 0; i < noticiasData.length; i++){
-		var titulo = markersData[i].Titulo;
-		var subtitulo = markersData[i].Subtitulo;
-		var data = markersData[i].Data;
-		var hora = markersData[i].Hora;
-		var urlNoticia = markersData[i].UrlNoticia;
-		var urlImagem = markersData[i].UrlImagem;
-		criarNoticias(titulo,subtitulo,data,hora,urlNoticia,urlImagem);
+		var titulo = noticiasData[i].Titulo;
+		var subtitulo = noticiasData[i].Subtitulo;
+		var data = noticiasData[i].Data;
+		var hora = noticiasData[i].Hora;
+		var urlNoticia = noticiasData[i].UrlNoticia;
+		var urlImagem = noticiasData[i].UrlImagem;
+		criarNoticia(titulo,subtitulo,data,hora,urlNoticia,urlImagem);
    }
 }
 
-function criarNoticias(titulo, subtitulo, data, hora, urlNoticia, urlImagem){
+function criarNoticia(titulo, subtitulo, data, hora, urlNoticia, urlImagem){
 	for(var i = 0; i < noticiasData.length; i++){
 		//Criar lista de notícias no html
 	}

@@ -1,29 +1,14 @@
-var estatisticasBairroData = new Array();
-var estatisticasTipoData = new Array();
-var estatisticasAnoData = new Array();
-
+var estatisticasData = new Array();
 var anos = new Array();
 var tipos = new Array();
 var bairros = new Array();
-var quantidadeOcorrencias = new Array();//talvez nao use
+var quantidadeOcorrencias = new Array();
 
-//GET JSON ESTATISTICAS BAIRRO
+//GET JSON ESTATISTICAS
 $.getJSON( "https://webserver-nao-vacila.herokuapp.com/estatisticas/", function( data ) {
-    estatisticasBairroData = data;
-	bairrosOcorrencias();
+    estatisticasData = data;
+	estatisticas();
 })
-
-//GET JSON ESTATISTICAS TIPO
-/*$.getJSON( "site", function( data ) {
-    estatisticasTipoData = data;
-	tipoOcorrencias();
-})
-
-//GET JSON ESTATISTICAS ANO
-$.getJSON( "site", function( data ) {
-    estatisticasAnoData = data;
-	anoOcorrencias();
-})*/
 
 window.onload = function () {
 	var chartMes = new CanvasJS.Chart("chartContainerMes",
@@ -78,22 +63,21 @@ window.onload = function () {
         chartTipo.render();
 }
 
-function bairrosOcorrencias() {
+function estatisticas() {
 	var posicaoBairro;
 	for(var x = 0; x < 5; x++){//Pega os 5 bairros com mais ocorrências
 		var maior = 0;
-		for (var i = 0; i < estatisticasBairroData.length; i++){
-			var numeroOcorrencias = estatisticasBairroData[i].quantidade;
+		for (var i = 0; i < estatisticasData.distribuicao_bairro.length; i++){
+			var numeroOcorrencias = estatisticasData.distribuicao_bairro[i].quantidade;
 			if(numeroOcorrencias >= maior){
-				alert(numeroOcorrencias);
 				posicaoBairro = i;
 				maior = numeroOcorrencias;
 			}
 		}
-		bairros[x] = estatisticasBairroData[posicaoBairro].bairro;
-		estatisticasBairroData[posicaoBairro].bairro = null;
-		quantidadeOcorrencias[x] = estatisticasBairroData[posicaoBairro].quantidade;
-		estatisticasBairroData[posicaoBairro].quantidade = 0;
+		bairros[x] = estatisticasData.distribuicao_bairro[posicaoBairro].bairro;
+		estatisticasData.distribuicao_bairro[posicaoBairro].bairro = null;
+		quantidadeOcorrencias[x] = estatisticasData.distribuicao_bairro[posicaoBairro].quantidade;
+		estatisticasData.distribuicao_bairro[posicaoBairro].quantidade = 0;
 	}
 	
 	for(var i = 0; i < bairros.length; i++){//Coloca os 5 bairros com mais ocorrências numa tabela
@@ -106,16 +90,12 @@ function bairrosOcorrencias() {
 		tr.appendChild(td2).appendChild(quantidade);
 		document.getElementById('bairros').appendChild(tr);
 	}
-}
-
-function anoOcorrencias(){
-	for(var i = 0; i < estatisticasAnoData.length; i++){
-		anos[i] = estatisticasAnoData[i].quantidade;
+	
+	for(var i = 0; i < estatisticasData.distribuicao_ano.length; i++){//For para estatística por ano
+		//anos[i] = 
 	}
-}
-
-function tipoOcorrencias(){
-	for(var i = 0; i < estatisticasTipoData.length; i++){
-		tipos[i] = estatisticasTipoData[i].quantidade;
+		
+	for(var i = 0; i < estatisticasData.distribuicao_tipo.length; i++){//For para estatística por tipo
+		//tipos[i] =
 	}
 }
