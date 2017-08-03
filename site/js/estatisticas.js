@@ -8,13 +8,13 @@ var bairros = new Array();
 var quantidadeOcorrencias = new Array();//talvez nao use
 
 //GET JSON ESTATISTICAS BAIRRO
-/*$.getJSON( "https://webserver-nao-vacila.herokuapp.com/estatisticas/", function( data ) {
+$.getJSON( "https://webserver-nao-vacila.herokuapp.com/estatisticas/", function( data ) {
     estatisticasBairroData = data;
 	bairrosOcorrencias();
 })
 
 //GET JSON ESTATISTICAS TIPO
-$.getJSON( "site", function( data ) {
+/*$.getJSON( "site", function( data ) {
     estatisticasTipoData = data;
 	tipoOcorrencias();
 })
@@ -78,25 +78,32 @@ window.onload = function () {
         chartTipo.render();
 }
 
-function bairrosOcorrencias() {//FALTA TESTAR
-	var maior = 0;
+function bairrosOcorrencias() {
 	var posicaoBairro;
 	for(var x = 0; x < 5; x++){//Pega os 5 bairros com mais ocorrências
+		var maior = 0;
 		for (var i = 0; i < estatisticasBairroData.length; i++){
 			var numeroOcorrencias = estatisticasBairroData[i].quantidade;
 			if(numeroOcorrencias >= maior){
+				alert(numeroOcorrencias);
 				posicaoBairro = i;
 				maior = numeroOcorrencias;
 			}
 		}
 		bairros[x] = estatisticasBairroData[posicaoBairro].bairro;
+		estatisticasBairroData[posicaoBairro].bairro = null;
 		quantidadeOcorrencias[x] = estatisticasBairroData[posicaoBairro].quantidade;
+		estatisticasBairroData[posicaoBairro].quantidade = 0;
 	}
+	
 	for(var i = 0; i < bairros.length; i++){//Coloca os 5 bairros com mais ocorrências numa tabela
 		var tr = document.createElement("tr");
-		var td = document.createElement("td");
+		var td1 = document.createElement("td");
+		var td2 = document.createElement("td");
 		var bairro = document.createTextNode(bairros[i]);
-		tr.appendChild(td).appendChild(bairro);
+		var quantidade = document.createTextNode(quantidadeOcorrencias[i]);
+		tr.appendChild(td1).appendChild(bairro);
+		tr.appendChild(td2).appendChild(quantidade);
 		document.getElementById('bairros').appendChild(tr);
 	}
 }
