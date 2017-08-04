@@ -54,8 +54,9 @@ function displayMarkers(){
       var titulo = markersData[i].titulo;
       var data = markersData[i].data;
       var endereco = markersData[i].endereco;
+      var tipo = markersData[i].tipo;
 
-      createMarker(latlng, titulo, data, endereco);
+      createMarker(latlng, titulo, data, endereco, tipo);
 
       // Os valores de latitude e longitude do marcador são adicionados à
       // variável bounds
@@ -69,7 +70,7 @@ function displayMarkers(){
 }
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
-function createMarker(latlng, titulo, data, endereco){
+function createMarker(latlng, titulo, data, endereco, tipo){
     var marker;
     marker = new google.maps.Marker({
         map: map,
@@ -77,7 +78,7 @@ function createMarker(latlng, titulo, data, endereco){
         title: titulo
 
         /* Bloco de Decisão do tipo de marcador
-        switch(markersData.id_tipo){
+        icon: switch(markersData.tipo){
             case 1:
                 icon: // Aqui vem a URL da imagem do ícone usado.
                 break;
