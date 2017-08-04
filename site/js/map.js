@@ -70,11 +70,42 @@ function displayMarkers(){
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
 function createMarker(latlng, titulo, data, endereco){
-   var marker = new google.maps.Marker({
-      map: map,
-      position: latlng,
-      title: titulo
-   });
+    var marker;
+    marker = new google.maps.Marker({
+        map: map,
+        position: latlng,
+        title: titulo
+
+        /* Bloco de Decisão do tipo de marcador
+        switch(markersData.id_tipo){
+            case 1:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 2:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 3:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 4:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 5:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 6:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 7:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            default:
+                icon: /nao-vacila/site/imgs/default_marker.png;
+
+
+    }
+        */
+    });
 
    // Evento que dá instrução à API para estar alerta ao click no marcador.
    // Define o conteúdo e abre a Info Window.
@@ -105,6 +136,7 @@ function createHeatMap(){
 function getPoints(){
     var latlng = new Array();
     for (var i = 0; i < markersData.length; i++){
+
          latlng.push( new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude));
         }
     return latlng;
