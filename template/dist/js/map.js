@@ -20,6 +20,7 @@ function initialize() {
       mapTypeId: 'roadmap',
    };
 
+
    map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
    // cria a nova Info Window com referência à variável infowindow
@@ -53,8 +54,9 @@ function displayMarkers(){
       var titulo = markersData[i].titulo;
       var data = markersData[i].data;
       var endereco = markersData[i].endereco;
+      var tipo = markersData[i].tipo;
 
-      createMarker(latlng, titulo, data, endereco);
+      createMarker(latlng, titulo, data, endereco, tipo);
 
       // Os valores de latitude e longitude do marcador são adicionados à
       // variável bounds
@@ -68,12 +70,43 @@ function displayMarkers(){
 }
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
-function createMarker(latlng, titulo, data, endereco){
-   var marker = new google.maps.Marker({
-      map: map,
-      position: latlng,
-      title: titulo
-   });
+function createMarker(latlng, titulo, data, endereco, tipo){
+    var marker;
+    marker = new google.maps.Marker({
+        map: map,
+        position: latlng,
+        title: titulo
+
+        /* Bloco de Decisão do tipo de marcador
+        icon: switch(markersData.tipo){
+            case 1:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 2:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 3:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 4:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 5:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 6:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            case 7:
+                icon: // Aqui vem a URL da imagem do ícone usado.
+                break;
+            default:
+                icon: /nao-vacila/site/imgs/default_marker.png;
+
+
+    }
+        */
+    });
 
    // Evento que dá instrução à API para estar alerta ao click no marcador.
    // Define o conteúdo e abre a Info Window.
@@ -102,9 +135,10 @@ function createHeatMap(){
 }
 
 function getPoints(){
+    var latlng = new Array();
     for (var i = 0; i < markersData.length; i++){
 
-        var latlng = [new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude)];
+         latlng.push( new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude));
         }
     return latlng;
 }
