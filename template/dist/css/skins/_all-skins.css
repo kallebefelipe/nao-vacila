@@ -2,6 +2,10 @@
  * Skin: Blue
  * ----------
  */
+ .skin-blue .main-header a img{
+  padding-top: 9px;
+    width: 70%;
+  }
 .skin-blue .main-header .navbar {
   background-color: #3c8dbc;
 }
@@ -43,6 +47,10 @@
   .skin-blue .main-header .navbar .dropdown-menu li a:hover {
     background: #367fa9;
   }
+
+  .skin-blue .main-header a img{
+    width: 20%;
+  }
 }
 .skin-blue .main-header .logo {
   background-color: #367fa9;
@@ -50,8 +58,9 @@
   border-bottom: 0px solid transparent;
 }
 .skin-blue .main-header .logo > a {
-  color: #ffffff;
+  color: black;
 }
+
 .skin-blue .main-header .logo:hover {
   background: #357ca5;
 }
@@ -63,7 +72,7 @@
 }
 .skin-blue .user-panel > .info,
 .skin-blue .user-panel > .info > a {
-  color: #fff;
+  color: white;
 }
 .skin-blue .sidebar-menu > li.header {
   color: #4b646f;

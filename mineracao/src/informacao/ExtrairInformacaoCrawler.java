@@ -19,6 +19,8 @@ import org.json.JSONObject;
 import org.w3c.dom.Document;
 
 public class ExtrairInformacaoCrawler {
+	private int noticiasTotal = 0;
+	private int noticiasMineradas = 0;
 	
 	public String executar(String textoCrawler) throws Exception {
 		
@@ -30,7 +32,7 @@ public class ExtrairInformacaoCrawler {
 		String endereco;
 		String descricao;
         double longitude;
-        String id_usuario = "1361193977302590";
+        String id_usuario = "NOTICIA_MINERADA";
         String hora;
         String bairro;
         String id_tipo;
@@ -52,7 +54,7 @@ public class ExtrairInformacaoCrawler {
 		
 		while(!linha.equals("]") && linha != null){
 			
-			
+			noticiasTotal++;
 			marcador = linha.indexOf("\"hora\"");
 			hora = linha.substring(marcador + 9, marcador + 14);
 			
@@ -132,7 +134,6 @@ public class ExtrairInformacaoCrawler {
 					latitude = Double.parseDouble(latlong[0]);
 					longitude = Double.parseDouble(latlong[1]);
 					enviarServidor(endereco, descricao, longitude, id_usuario, hora, bairro, id_tipo, latitude, titulo, data);
-					System.out.println("Inserido");
 					/*System.out.println(
 					endereco+
 					descricao+
@@ -156,7 +157,6 @@ public class ExtrairInformacaoCrawler {
 						latitude = Double.parseDouble(latlong[0]);
 						longitude = Double.parseDouble(latlong[1]);
 						enviarServidor(endereco, descricao, longitude, id_usuario, hora, bairro, id_tipo, latitude, titulo, data);
-						System.out.println("Inserido");
 						/*System.out.println(
 						endereco+
 						descricao+
@@ -213,7 +213,7 @@ public class ExtrairInformacaoCrawler {
 		try {			
 			URL url;
 			
-			url = new URL("http://webserver-nao-vacila.herokuapp.com/ocorrencia/");
+			url = new URL("https://webserver-nao-vacila.herokuapp.com/ocorrencia_classificador/");
 			
 			HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
 			httpCon.setDoOutput(true);
@@ -249,7 +249,9 @@ public class ExtrairInformacaoCrawler {
 			    br.close();
 			    System.out.println("wallace" + sb.toString());  
 			} else {
-			    System.out.println(httpCon.getResponseMessage());  
+				noticiasMineradas++;
+			    System.out.println(httpCon.getResponseMessage());
+			    System.out.println(noticiasTotal+"-"+noticiasMineradas);
 			}  
 			out.close();
 		
