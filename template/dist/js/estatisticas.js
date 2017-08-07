@@ -28,9 +28,9 @@ function graficos() {
             { x: new Date(anos[1], 01, 31), y: quantidadeAnos[1] },
             { x: new Date(anos[2], 01, 31), y: quantidadeAnos[2] },
             { x: new Date(anos[3], 01, 31), y: quantidadeAnos[3] },
-            { x: new Date(anos[4], 01, 31), y: quantidadeAnos[4] },
+            { x: new Date(anos[6], 01, 31), y: quantidadeAnos[6] },
             { x: new Date(anos[5], 01, 31), y: quantidadeAnos[5] },
-            { x: new Date(anos[6], 01, 31), y: quantidadeAnos[6] }
+            { x: new Date(anos[4], 01, 31), y: quantidadeAnos[4] }
             ]
           }
           ]
