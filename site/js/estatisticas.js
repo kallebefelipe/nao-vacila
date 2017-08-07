@@ -1,6 +1,8 @@
 var estatisticasData = new Array();
 var anos = new Array();
+var quantidadeAnos = new Array();
 var tipos = new Array();
+var quantidadeTipo = new Array();
 var bairros = new Array();
 var quantidadeOcorrencias = new Array();
 
@@ -11,7 +13,8 @@ $.getJSON( "https://webserver-nao-vacila.herokuapp.com/estatisticas/", function(
 })
 
 window.onload = function () {
-	var chartMes = new CanvasJS.Chart("chartContainerMes",
+	//FALTA ALTERAR JSON NO SERVIDOR PRA ANO
+	var chartAno = new CanvasJS.Chart("chartContainerAno",
         {
 
           title:{
@@ -22,23 +25,22 @@ window.onload = function () {
             type: "line",
 
             dataPoints: [
-            { x: new Date(2011, 11, 31), y: 450 },//tipos[0]
-            { x: new Date(2012, 11, 31), y: 414 },
-            { x: new Date(2013, 11, 31), y: 520 },
-            { x: new Date(2014, 11, 31), y: 460 },
-            { x: new Date(2015, 11, 31), y: 450 },
-            { x: new Date(2016, 11, 31), y: 500 },
-            { x: new Date(2017, 11, 31), y: 480 }
+            { x: new Date(anos[0], 01, 31), y: quantidadeAnos[0] },
+            { x: new Date(anos[1], 01, 31), y: quantidadeAnos[1] },
+            { x: new Date(anos[2], 01, 31), y: quantidadeAnos[2] },
+            { x: new Date(anos[3], 01, 31), y: quantidadeAnos[3] },
+            { x: new Date(anos[4], 01, 31), y: quantidadeAnos[4] },
+            { x: new Date(anos[5], 01, 31), y: quantidadeAnos[5] },
+            { x: new Date(anos[6], 01, 31), y: quantidadeAnos[6] }
             ]
           }
           ]
         });
 
-        chartMes.render();
+        chartAno.render();
 	
 	var chartTipo = new CanvasJS.Chart("chartContainerTipo",
         {
-            theme: "theme2",
             title:{
                 text: "Tipos de ocorrências"
             },
@@ -49,13 +51,15 @@ window.onload = function () {
                 toolTipContent: "{y} - #percent %",
                 legendText: "{indexLabel}",
                 dataPoints: [
-                    {  y: 4181563, indexLabel: "Roubo" },//anos[0]
-                    {  y: 2175498, indexLabel: "Furto" },
-                    {  y: 3125844, indexLabel: "Sequestro" },
-                    {  y: 1176121, indexLabel: "Arrombamento"},
-                    {  y: 1727161, indexLabel: "Tiroteio" },
-                    {  y: 4303364, indexLabel: "Homicídios"},
-                    {  y: 1717786, indexLabel: "Tráfico"}
+                    {  y: quantidadeTipo[0], indexLabel: tipos[0] },
+                    {  y: quantidadeTipo[1], indexLabel: tipos[1] },
+                    {  y: quantidadeTipo[2], indexLabel: tipos[2] },
+                    {  y: quantidadeTipo[3], indexLabel: tipos[3] },
+                    {  y: quantidadeTipo[4], indexLabel: tipos[4] },
+                    {  y: quantidadeTipo[5], indexLabel: tipos[5] },
+                    {  y: quantidadeTipo[6], indexLabel: tipos[6] },
+					{  y: quantidadeTipo[7], indexLabel: tipos[7] },
+					{  y: quantidadeTipo[8], indexLabel: tipos[8] }
                 ]
             }
             ]
@@ -92,10 +96,12 @@ function estatisticas() {
 	}
 	
 	for(var i = 0; i < estatisticasData.distribuicao_ano.length; i++){//For para estatística por ano
-		//anos[i] = 
+		anos[i] = estatisticasData.distribuicao_ano[i].anos;
+		quantidadeAnos[i] = estatisticasData.distribuicao_ano[i].quantidade; 
 	}
 		
 	for(var i = 0; i < estatisticasData.distribuicao_tipo.length; i++){//For para estatística por tipo
-		//tipos[i] =
+		tipos[i] = estatisticasData.distribuicao_tipo[i].tipo;
+		quantidadeTipo[i] = estatisticasData.distribuicao_tipo[i].quantidade;
 	}
 }
