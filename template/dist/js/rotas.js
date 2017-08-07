@@ -80,7 +80,7 @@ function regioes(){
 	for (var i = 0; i < regioesData.length; i++){
 		if(regioesData[i] == 'r' && regioesData[i+1] == 'e' && regioesData[i+2] == 'g' && regioesData[i+3] == 'i'){
 			p = document.createElement("p");
-			t = document.createTextNode("Rota "+ count + " tem " + regioesData[i+19]+ " ocorrências");
+			t = document.createTextNode("Rota "+ count + " tem " + regioesData[i+19]+ " zonas de perigo");
 			p.appendChild(t);
 			document.getElementById("regioes-perigosas").appendChild(p);
 			count++;

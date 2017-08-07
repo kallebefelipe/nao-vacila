@@ -10,6 +10,9 @@ $.getJSON( "https://webserver-nao-vacila.herokuapp.com/ocorrencia/?format=json",
     markersData = data;
     displayMarkers();
     createHeatMap();
+	changeRadius();
+	changeOpacity();
+	changeDissipating();
 })
 
 
@@ -130,16 +133,16 @@ function createMarker(latlng, titulo, data, endereco, tipo){
 function createHeatMap(){
     heatmap = new google.maps.visualization.HeatmapLayer({
         data: getPoints(),
-        map: map
+        map: map,
+		dissipating: true,
     });
 }
 
 function getPoints(){
     var latlng = new Array();
     for (var i = 0; i < markersData.length; i++){
-
-         latlng.push( new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude));
-        }
+    	latlng.push( new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude));
+    }
     return latlng;
 }
 
@@ -168,9 +171,13 @@ function changeGradient() {
 }
 
 function changeRadius() {
-    heatmap.set('radius', heatmap.get('radius') ? null : 100);
+    heatmap.set('radius', heatmap.get('radius') ? null : 5);
+}
+
+function changeDissipating() {
+    heatmap.set('dissipating', heatmap.get('dissipating') ? false : true);
 }
 
 function changeOpacity() {
-    heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
-}
+        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.6);
+      }
