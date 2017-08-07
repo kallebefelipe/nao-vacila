@@ -13,7 +13,7 @@ function initialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    map = new google.maps.Map(document.getElementById("mapa"), options);
+    map = new google.maps.Map(document.getElementById("map"), options);
 	directionsDisplay.setMap(map);
 	directionsDisplay.setPanel(document.getElementById("trajeto-texto"));
 	
@@ -87,4 +87,3 @@ function regioes(){
 		}
    }
 }
-	
