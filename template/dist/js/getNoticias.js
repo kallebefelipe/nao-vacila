@@ -2,7 +2,6 @@ var noticiasData = new Array();
 
 //GET JSON NOTICIAS
 $.getJSON( "http://naovacila.azurewebsites.net/api/noticia", function( data ) {
-	alert(JSON.stringify(data));
     noticiasData = data;
 	noticias();
 })
@@ -20,7 +19,10 @@ function noticias() {
 }
 
 function criarNoticia(titulo, subtitulo, data, hora, urlNoticia, urlImagem){
-	for(var i = 0; i < noticiasData.length; i++){
-		//Criar lista de notícias no html
-	}
+	//Criar lista de notícias no html
+	
+	var p = document.createElement("p");
+	var titulo = document.createTextNode(titulo);
+	p.appendChild(titulo);
+	document.getElementById('noticia').appendChild(p);
 }

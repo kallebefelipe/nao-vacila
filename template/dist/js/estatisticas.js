@@ -12,8 +12,7 @@ $.getJSON( "https://webserver-nao-vacila.herokuapp.com/estatisticas/", function(
 	estatisticas();
 })
 
-window.onload = function () {
-	//FALTA ALTERAR JSON NO SERVIDOR PRA ANO
+function graficos() {
 	var chartAno = new CanvasJS.Chart("chartContainerAno",
         {
 
@@ -96,7 +95,7 @@ function estatisticas() {
 	}
 	
 	for(var i = 0; i < estatisticasData.distribuicao_ano.length; i++){//For para estatística por ano
-		anos[i] = estatisticasData.distribuicao_ano[i].anos;
+		anos[i] = estatisticasData.distribuicao_ano[i].ano;
 		quantidadeAnos[i] = estatisticasData.distribuicao_ano[i].quantidade; 
 	}
 		
@@ -104,4 +103,5 @@ function estatisticas() {
 		tipos[i] = estatisticasData.distribuicao_tipo[i].tipo;
 		quantidadeTipo[i] = estatisticasData.distribuicao_tipo[i].quantidade;
 	}
+	graficos();
 }
