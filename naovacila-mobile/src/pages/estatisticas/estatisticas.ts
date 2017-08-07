@@ -4,7 +4,7 @@ import { Chart } from 'chart.js';
 import { EstatisticasProvider } from '../../providers/estatisticas/estatisticas';
 
 
-@IonicPage()
+
 @Component({
   selector: 'page-estatisticas',
   templateUrl: 'estatisticas.html',

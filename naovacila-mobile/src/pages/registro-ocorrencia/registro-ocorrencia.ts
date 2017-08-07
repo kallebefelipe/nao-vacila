@@ -99,13 +99,50 @@ export class RegistroOcorrenciaPage {
     }
  
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      switch (this.id_tipoOcorrencia) {
+        case 1 : { //
+           var pinColor = "d87e29";
+        } break;
+        case 2 : {
+           var pinColor = "f7df2e";
+        } break;
+        case 3 : {
+           var pinColor = "a6f72d";
+        } break;
+        case 4 : {
+           var pinColor = "17c4b8";
+        } break;
+        case 5 : {
+           var pinColor = "103cea";
+        } break;
+        case 6 : {
+           var pinColor = "711fc4";
+        } break;
+        case 7 : {
+           var pinColor = "d317bd";
+        } break;
+        default:  var pinColor = "FE7569";
+      }
+
+      var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+        new google.maps.Size(21, 34),
+        new google.maps.Point(0,0),
+        new google.maps.Point(10, 34));
 
       let marker = new google.maps.Marker({
+        icon: pinImage,
         map: this.map,
         draggable: true,
         animation: google.maps.Animation.DROP,
         position: this.map.getCenter()
       });
+
+      // let marker = new google.maps.Marker({
+      //   map: this.map,
+      //   draggable: true,
+      //   animation: google.maps.Animation.DROP,
+      //   position: this.map.getCenter()
+      // });
 
        google.maps.event.addListener(marker, 'dragend', (event) => {
         console.log("marcador arrastado" + marker.getPosition().lat() + "- " + marker.position);
@@ -130,7 +167,7 @@ export class RegistroOcorrenciaPage {
           this.longitude = longitude;
       
         })
-        .catch((error: any) => console.log("erro no geocoder reverso"+ error));
+        .catch((error: any) => console.log("erro no geocoder reverso"+ JSON.stringify(error)));
     
   }
 
