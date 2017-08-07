@@ -95,7 +95,7 @@ export class HomePage {
         data => {
           this.ocorrencias = data;
           for(var i = 0; i<this.ocorrencias.length; i++){
-            //this.adicionarMarcador(this.ocorrencias[i]);
+            this.adicionarMarcador(this.ocorrencias[i]);
           }
         },
         err => {

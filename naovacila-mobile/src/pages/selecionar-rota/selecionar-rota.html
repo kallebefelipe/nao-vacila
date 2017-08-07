@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="secondary">
     <ion-title>Selecionar Rota</ion-title>
   </ion-navbar>
 
@@ -15,7 +15,7 @@
 
 <ion-content class="background">
   
-    <ion-card  *ngFor="let rota of rotas; let i = index" (click)="selecionarRota(i)">
+    <ion-card *ngFor="let rota of rotas; let i = index" (click)="selecionarRota(i)">
       <ion-card-header>
         Rota {{i+1}}
       </ion-card-header>

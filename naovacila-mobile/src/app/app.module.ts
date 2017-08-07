@@ -14,6 +14,7 @@ import { RadarPage } from '../pages/radar/radar';
 import { ConfigPage } from '../pages/config/config';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CriarRotaPage } from '../pages/criar-rota/criar-rota';
+import { EstatisticasPage } from '../pages/estatisticas/estatisticas';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,6 +24,8 @@ import { HttpModule } from '@angular/http';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { RotaServicoProvider } from '../providers/rota-servico/rota-servico';
 import { NoticiaProvider } from '../providers/noticia/noticia';
+import { UsuarioProvider } from '../providers/usuario/usuario';
+import { EstatisticasProvider } from '../providers/estatisticas/estatisticas';
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import { NoticiaProvider } from '../providers/noticia/noticia';
     ConfigPage,
     TabsPage,
     LoginPage,
-    CriarRotaPage
+    CriarRotaPage,
+    EstatisticasPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,8 @@ import { NoticiaProvider } from '../providers/noticia/noticia';
     ConfigPage,
     TabsPage,
     LoginPage,
-    CriarRotaPage
+    CriarRotaPage,
+    EstatisticasPage
   ],
   providers: [
     StatusBar,
@@ -64,7 +69,9 @@ import { NoticiaProvider } from '../providers/noticia/noticia';
     NativeGeocoder,
     RotaServicoProvider,
     NoticiaProvider,
-    InAppBrowser
+    InAppBrowser,
+    UsuarioProvider,
+    EstatisticasProvider
   ]
 })
 export class AppModule {}

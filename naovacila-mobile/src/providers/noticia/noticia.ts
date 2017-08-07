@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 
-let apiNoticiaUrl = "http://localhost:8100/api/noticia";
+let apiNoticiaUrl = "http://naovacila.azurewebsites.net/api/noticia";
 
 @Injectable()
 export class NoticiaProvider {

@@ -1,6 +1,6 @@
 {
   "name": "naovacila-mobile",
   "app_id": "",
-  "type": "ionic-angular",
-  "proxies": [{"path": "/api", "proxyUrl": "http://naovacila.azurewebsites.net/api"}]
+  "type": "ionic-angular"
+  
 }
