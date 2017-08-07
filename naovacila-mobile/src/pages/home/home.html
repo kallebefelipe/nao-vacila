@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="secondary">
    <!--<img src="assets\\imagens\\logo1.png" width="35%">-->
    <ion-title>
    Não Vacila
@@ -11,7 +11,7 @@
   <div *ngIf='loading' id="carregar">Carregando ocorrências...</div>
 
   <ion-fab right bottom >
-    <button ion-fab color="dark"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
     
     <ion-fab-list side="top">
       <button ion-fab (click)="abrirRegistrarOcorrencia()">

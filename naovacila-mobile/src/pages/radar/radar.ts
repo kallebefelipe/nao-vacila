@@ -29,4 +29,8 @@ export class RadarPage {
     this.navCtrl.push('MinhasOcorrenciasPage')
   }
 
+  abrirEstatisticas(){
+    this.navCtrl.push('EstatisticasPage')
+  }
+
 }

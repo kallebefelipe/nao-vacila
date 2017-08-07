@@ -6,27 +6,27 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="secondary">
     <ion-title>Notícias</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
+<ion-content class="background">
 
   <ion-list class="page-noticias">
       <ion-card *ngFor="let noticia of noticias" (click)="abrirUrl(UrlNoticia)">
         <ion-item>
           <ion-avatar item-left>
-            <img src="../assets/imagens/jc.jpg" height="30" />
+            <img src="./assets/imagens/jc.jpg" height="30" />
           </ion-avatar>
           <h5>Jornal do Commercio</h5>
           <p>{{noticia.Data}} {{noticia.Hora}}</p>
         </ion-item>
         <img [src]="noticia.UrlImagem">
         <ion-card-content>
-          <ion-card-title style="color: darkred">
+          <ion-card-title style="color: #D83C41">
             {{noticia.Titulo}}
           </ion-card-title>
           <p>

@@ -1,0 +1,45 @@
+<!--
+  Generated template for the EstatisticasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Estatísticas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="background">
+
+  <ion-card>
+      <ion-card-header  text-wrap>
+        Quantidade de ocorrências cadastradas por ano
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+ 
+    <ion-card>
+      <ion-card-header text-wrap>
+        Tipos de ocorrências mais cadastrados
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+ 
+    <ion-card>
+      <ion-card-header text-wrap>
+        Bairros com maior número de registros
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barCanvas2></canvas>
+      </ion-card-content>
+    </ion-card>
+
+</ion-content>
