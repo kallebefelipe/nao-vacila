@@ -3,12 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { NoticiaProvider } from '../../providers/noticia/noticia';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-/**
- * Generated class for the NoticiasPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @IonicPage()
 @Component({
   selector: 'page-noticias',

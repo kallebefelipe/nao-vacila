@@ -22,7 +22,7 @@
         "@angular/platform-browser-dynamic": "4.1.3",
         "@ionic-native/core": "3.12.1",
         "@ionic-native/facebook": "^3.12.1",
-        "@ionic-native/geolocation": "^3.12.1",
+        "@ionic-native/geolocation": "^3.14.0",
         "@ionic-native/google-plus": "^3.12.1",
         "@ionic-native/in-app-browser": "^4.1.0",
         "@ionic-native/native-geocoder": "^4.0.1",
@@ -78,9 +78,9 @@
             "cordova-plugin-googleplus": {
                 "REVERSED_CLIENT_ID": "com.googleusercontent.apps.550281591965-47suhso1c2e8hsrvhj8a49ckjp2e5td8"
             },
-            "cordova-plugin-geolocation": {},
             "cordova-plugin-nativegeocoder": {},
-            "cordova-plugin-inappbrowser": {}
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-geolocation": {}
         },
         "platforms": [
             "android"

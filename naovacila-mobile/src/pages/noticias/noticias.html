@@ -16,7 +16,7 @@
 <ion-content class="background">
 
   <ion-list class="page-noticias">
-      <ion-card *ngFor="let noticia of noticias" (click)="abrirUrl(UrlNoticia)">
+      <ion-card *ngFor="let noticia of noticias" (click)="abrirUrl(noticia.UrlNoticia)">
         <ion-item>
           <ion-avatar item-left>
             <img src="./assets/imagens/jc.jpg" height="30" />

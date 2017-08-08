@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { EstatisticasPage } from '../estatisticas/estatisticas';
 
 /**
  * Generated class for the RadarPage page.
@@ -30,7 +31,8 @@ export class RadarPage {
   }
 
   abrirEstatisticas(){
-    this.navCtrl.push('EstatisticasPage')
+    console.log('click abrir estatisticas');
+    this.navCtrl.push(EstatisticasPage);
   }
 
 }

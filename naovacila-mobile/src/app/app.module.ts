@@ -28,6 +28,7 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 import { EstatisticasProvider } from '../providers/estatisticas/estatisticas';
 
 
+
 @NgModule({
   declarations: [
     MyApp,

@@ -14,11 +14,11 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  @ViewChild(Nav) nav : Nav;
-  rootPage:any;
+  @ViewChild(Nav) nav: Nav;
+  rootPage: any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
-   platform.ready().then(() => {
+    platform.ready().then(() => {
       // Here we will check if the user is already logged in
       // because we don't want to ask users to log in each time they open the app
       let env = this;
@@ -31,10 +31,10 @@ export class MyApp {
       // }, function (error) {
       //   //we don't have the user data so we will ask him to log in
       //   env.nav.setRoot(TabsPage);
-        
+
       //   splashScreen.hide();
       // });
-        env.nav.setRoot(TabsPage);
+      env.nav.setRoot(TabsPage);
       statusBar.styleDefault();
     });
   }
