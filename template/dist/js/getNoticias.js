@@ -1,7 +1,7 @@
 var noticiasData = new Array();
 
 //GET JSON NOTICIAS
-$.getJSON( "http://naovacila.azurewebsites.net/api/noticia", function( data ) {
+$.getJSON( "https://naovacila.azurewebsites.net/api/noticia", function( data ) {
     noticiasData = data;
 	noticias();
 })
