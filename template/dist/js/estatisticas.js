@@ -13,11 +13,34 @@ $.getJSON( "https://webserver-nao-vacila.herokuapp.com/estatisticas/", function(
 })
 
 function graficos() {
+	var chartBairro = new CanvasJS.Chart("chartContainerBairro",
+		{
+			title:{
+			text: "Ocorrências por bairro"
+			},
+
+			data: [
+			{
+				type: "bar",
+
+				dataPoints: [
+				{ x: 10, y: quantidadeOcorrencias[4], label:bairros[4] },
+				{ x: 20, y: quantidadeOcorrencias[3], label:bairros[3] },
+				{ x: 30, y: quantidadeOcorrencias[2], label:bairros[2] },
+				{ x: 40, y: quantidadeOcorrencias[1], label:bairros[1] },
+				{ x: 50, y: quantidadeOcorrencias[0], label:bairros[0] }
+				]
+			}
+			]
+		});
+
+		chartBairro.render();
+	
 	var chartAno = new CanvasJS.Chart("chartContainerAno",
         {
 
           title:{
-          text: "Ocorrencias - por ano"
+          text: "Ocorrências por ano"
           },
            data: [
           {
