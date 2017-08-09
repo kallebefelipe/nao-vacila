@@ -49,11 +49,11 @@ function graficos() {
             dataPoints: [
             { x: new Date(anos[0], 01, 31), y: quantidadeAnos[0] },
             { x: new Date(anos[1], 01, 31), y: quantidadeAnos[1] },
-            { x: new Date(anos[2], 01, 31), y: quantidadeAnos[2] },
             { x: new Date(anos[3], 01, 31), y: quantidadeAnos[3] },
+            { x: new Date(anos[4], 01, 31), y: quantidadeAnos[4] },
             { x: new Date(anos[6], 01, 31), y: quantidadeAnos[6] },
-            { x: new Date(anos[5], 01, 31), y: quantidadeAnos[5] },
-            { x: new Date(anos[4], 01, 31), y: quantidadeAnos[4] }
+            { x: new Date(anos[2], 01, 31), y: quantidadeAnos[2] },
+            { x: new Date(anos[5], 01, 31), y: quantidadeAnos[5] }
             ]
           }
           ]
@@ -106,7 +106,7 @@ function estatisticas() {
 		estatisticasData.distribuicao_bairro[posicaoBairro].quantidade = 0;
 	}
 	
-	for(var i = 0; i < bairros.length; i++){//Coloca os 5 bairros com mais ocorrências numa tabela
+	/*for(var i = 0; i < bairros.length; i++){//Coloca os 5 bairros com mais ocorrências numa tabela
 		var tr = document.createElement("tr");
 		var td1 = document.createElement("td");
 		var td2 = document.createElement("td");
@@ -115,11 +115,11 @@ function estatisticas() {
 		tr.appendChild(td1).appendChild(bairro);
 		tr.appendChild(td2).appendChild(quantidade);
 		document.getElementById('bairros').appendChild(tr);
-	}
+	}*/
 	
 	for(var i = 0; i < estatisticasData.distribuicao_ano.length; i++){//For para estatística por ano
 		anos[i] = estatisticasData.distribuicao_ano[i].ano;
-		quantidadeAnos[i] = estatisticasData.distribuicao_ano[i].quantidade; 
+		quantidadeAnos[i] = estatisticasData.distribuicao_ano[i].quantidade;
 	}
 		
 	for(var i = 0; i < estatisticasData.distribuicao_tipo.length; i++){//For para estatística por tipo
