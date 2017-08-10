@@ -75,40 +75,49 @@ function displayMarkers(){
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
 function createMarker(latlng, titulo, data, endereco, tipo){
     var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    /* Bloco de Decisão do tipo de marcador*/
+    var icone;
+    var pinColor = "FE7569";
+    switch(tipo){
+        case 1:
+            pinColor = "d87e29";
+            icone: iconBase + pinColor;
+            break;
+        case 2:
+            pinColor = "f7df2e";
+            icone: iconBase + pinColor;
+            break;
+        case 3:
+            pinColor = "a6f72d";
+            icone: iconBase + pinColor;
+            break;
+        case 4:
+            pinColor = "17c4b8";
+            icone: iconBase + pinColor;
+            break;
+        case 5:
+            pinColor = "103cea";
+            icone: iconBase + pinColor;
+            break;
+        case 6:
+            pinColor = "711fc4";
+            icone: iconBase + pinColor;
+            break;
+        case 7:
+            pinColor = 'd317bd'
+            icone: iconBase + pinColor;
+            break;
+        default:
+            pinColor = "FE7569";
+            icone: iconBase + pinColor;
+
+    }
     var marker;
     marker = new google.maps.Marker({
         map: map,
         position: latlng,
-        title: titulo
-
-        // Bloco de Decisão do tipo de marcador
-        icon: switch(markersData.tipo){
-            case 1:
-                icon: iconBase + var pinColor = "#d87e29";
-                break;
-            case 2:
-                icon: iconBase + var pinColor = "#f7df2e";
-                break;
-            case 3:
-                icon: iconBase +  var pinColor = "#a6f72d";
-                break;
-            case 4:
-                icon: iconBase + var pinColor = "#17c4b8";
-                break;
-            case 5:
-                icon: iconBase + var pinColor = "#103cea";
-                break;
-            case 6:
-                icon: iconBase +  var pinColor = "#711fc4";
-                break;
-            case 7:
-                icon: iconBase + var mpinColor = '#d317bd'
-                break;
-            default:
-            icon: iconBase + var pinColor = "#FE7569";
-
-        }
-
+        title: titulo,
+        icon: icone,
     });
 
    // Evento que dá instrução à API para estar alerta ao click no marcador.
@@ -134,7 +143,7 @@ function createHeatMap(){
     heatmap = new google.maps.visualization.HeatmapLayer({
         data: getPoints(),
         map: map,
-		dissipating: true,
+		dissipating: true
     });
 }
 
@@ -148,6 +157,15 @@ function getPoints(){
 
 function toggleHeatmap() {
     heatmap.setMap(heatmap.getMap() ? null : map);
+}
+
+function clearMarkers() {
+    var markers = new Array();
+    for(i = 0; i < markersData.length; i++){
+        markers.push( new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude));
+        markers[i].setMap(null);
+    }
+
 }
 
 function changeGradient() {
@@ -179,5 +197,5 @@ function changeDissipating() {
 }
 
 function changeOpacity() {
-        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.8);
+        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.4);
       }
