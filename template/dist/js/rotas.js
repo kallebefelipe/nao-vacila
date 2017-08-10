@@ -2,6 +2,7 @@ var map;
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var regioesData = new Array();
+var divClone;
 
 function initialize() {	
 	directionsDisplay = new google.maps.DirectionsRenderer();
@@ -48,6 +49,12 @@ $("form").submit(function(event) {
 	
     enderecoPartida = $("#txtEnderecoPartida").val();
     enderecoChegada = $("#txtEnderecoChegada").val();
+	var segredo = $("#segredo").val();
+	//Na primeira vez salva div vazio
+	if(segredo == ""){
+		document.getElementById('segredo').value = "haha";
+		divClone = $("#regioes-perigosas").clone();  
+	}
 
     var request = {
         origin: enderecoPartida,
@@ -77,6 +84,8 @@ $("form").submit(function(event) {
 function regioes(){
 	var p,t;
 	var count = 1;
+	document.getElementById('regioes-perigosas');
+	$("#regioes-perigosas").replaceWith(divClone.clone());//reseta div
 	for (var i = 0; i < regioesData.length; i++){
 		if(regioesData[i] == 'r' && regioesData[i+1] == 'e' && regioesData[i+2] == 'g' && regioesData[i+3] == 'i'){
 			p = document.createElement("p");

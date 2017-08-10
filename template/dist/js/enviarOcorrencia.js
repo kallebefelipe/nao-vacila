@@ -109,7 +109,7 @@ $("form").submit(function(event) {
 			else if($("#tipo").val() == "Agressão"){
 			   tipoOcorrencia = 8;
 			
-			else if($("#tipo").val() == "Estupro"){
+			}else if($("#tipo").val() == "Estupro"){
 			   tipoOcorrencia = 9;
 			}
 			else if($("#tipo").val() == "Acidente"){
