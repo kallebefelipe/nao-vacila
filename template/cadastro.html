@@ -55,6 +55,7 @@
               <li><a href="#">Registrar Ocorrência</a></li>
               <li><a href="estatisticas.html">Estatística Crimes</a></li>
               <li><a href="rotas.html">Rotas Seguras</a></li>
+			  <li><a href="alerta.html">Alerta</a></li>
 				<!-- Login Facebook-->
 			  <div class="nav navbar-nav navbar-right fb-login-button" data-width="200" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"></div>
 				<!-- Login Google-->
@@ -91,13 +92,16 @@
                   <label for="idTipo">Tipo:</label>
                   <select class="form-control" id="tipo" required="" name="tipo">
                     <option></option>
+                    <option>Assalto</option>
                     <option>Roubo</option>
-                    <option>Furto</option>
                     <option>Sequestro</option>
                     <option>Arrombamento</option>
                     <option>Tiroteio</option>
                     <option>Homicídio</option>
                     <option>Tráfico</option>
+					<option>Agressão</option>
+					<option>Estupro</option>
+					<option>Acidente</option>
                   </select>
                 </div>
 
@@ -172,7 +176,8 @@
     <!-- AdminLTE App -->
     <script src="dist/js/app.min.js" type="text/javascript"></script>
 	  
-	  
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ&libraries=places&callback=initAutocomplete"async defer></script>
+    <script src="dist/js/loginFacebook.js"></script>  
 	<script src="dist/js/autocomplete.js"></script>
     <script src="dist/js/enviarOcorrencia.js"></script>
   </body>

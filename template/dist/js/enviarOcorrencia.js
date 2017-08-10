@@ -85,10 +85,10 @@ $("form").submit(function(event) {
 $("form").submit(function(event) {
 			var tipoOcorrencia;
 
-			if($("#tipo").val() == "Roubo"){
+			if($("#tipo").val() == "Assalto"){
 			   tipoOcorrencia = 1;
 			}
-			else if($("#tipo").val() == "Furto"){
+			else if($("#tipo").val() == "Roubo"){
 			   tipoOcorrencia = 2;
 			}
 			else if($("#tipo").val() == "Sequestro"){
@@ -105,6 +105,15 @@ $("form").submit(function(event) {
 			}
 			else if($("#tipo").val() == "Tráfico"){
 			   tipoOcorrencia = 7;
+			}
+			else if($("#tipo").val() == "Agressão"){
+			   tipoOcorrencia = 8;
+			
+			else if($("#tipo").val() == "Estupro"){
+			   tipoOcorrencia = 9;
+			}
+			else if($("#tipo").val() == "Acidente"){
+			   tipoOcorrencia = 10;
 			}
 			else{
 			   tipoOcorrencia = -1;
