@@ -1,7 +1,6 @@
 var ocorrencia;
 var uid;
 
-/*Corrigir Api Facebook
 $("form").submit(function(event) {
 	
 	FB.getLoginStatus(function(response) {
@@ -19,10 +18,10 @@ $("form").submit(function(event) {
 		  event.preventDefault();
 			var tipoOcorrencia;
 
-			if($("#tipo").val() == "Roubo"){
+			if($("#tipo").val() == "Assalto"){
 			   tipoOcorrencia = 1;
 			}
-			else if($("#tipo").val() == "Furto"){
+			else if($("#tipo").val() == "Roubo"){
 			   tipoOcorrencia = 2;
 			}
 			else if($("#tipo").val() == "Sequestro"){
@@ -40,6 +39,15 @@ $("form").submit(function(event) {
 			else if($("#tipo").val() == "Tráfico"){
 			   tipoOcorrencia = 7;
 			}
+			else if($("#tipo").val() == "Agressão"){
+			   tipoOcorrencia = 8;
+			
+			}else if($("#tipo").val() == "Estupro"){
+			   tipoOcorrencia = 9;
+			}
+			else if($("#tipo").val() == "Acidente"){
+			   tipoOcorrencia = 10;
+			}
 			else{
 			   tipoOcorrencia = -1;
 			}
@@ -48,7 +56,6 @@ $("form").submit(function(event) {
 				endereco: $("#endereco").val(),
 				descricao: $("#descricao").val(),
 				longitude: $("#longitude").val(),
-				id_usuario: uid,
 				hora: $("#hora").val(),
 				id_tipo: tipoOcorrencia,
 				latitude: $("#latitude").val(),
@@ -64,10 +71,7 @@ $("form").submit(function(event) {
 				contentType : "application/json"
 			});
 
-			document.getElementById("myForm").reset();
-			return confirm("Ocorrência cadastrada com sucesso");
-		  
-		  
+			return confirm("Ocorrência cadastrada com sucesso");		  
 		  
 	  } else if (response.status === 'not_authorized') {
 		// the user is logged in to Facebook, 
@@ -80,56 +84,4 @@ $("form").submit(function(event) {
 	 });
 	
     
-});*/
-
-$("form").submit(function(event) {
-			var tipoOcorrencia;
-
-			if($("#tipo").val() == "Roubo"){
-			   tipoOcorrencia = 1;
-			}
-			else if($("#tipo").val() == "Furto"){
-			   tipoOcorrencia = 2;
-			}
-			else if($("#tipo").val() == "Sequestro"){
-			   tipoOcorrencia = 3;
-			}
-			else if($("#tipo").val() == "Arrombamento"){
-			   tipoOcorrencia = 4;
-			}
-			else if($("#tipo").val() == "Tiroteio"){
-			   tipoOcorrencia = 5;
-			}
-			else if($("#tipo").val() == "Homicídio"){
-			   tipoOcorrencia = 6;
-			}
-			else if($("#tipo").val() == "Tráfico"){
-			   tipoOcorrencia = 7;
-			}
-			else{
-			   tipoOcorrencia = -1;
-			}
-
-			ocorrencia = JSON.stringify({
-				endereco: $("#endereco").val(),
-				descricao: $("#descricao").val(),
-				longitude: $("#longitude").val(),
-				id_usuario: uid,
-				hora: $("#hora").val(),
-				id_tipo: tipoOcorrencia,
-				latitude: $("#latitude").val(),
-				titulo: $("#titulo").val(),
-				data: $("#data").val()
-			});
-
-			$.ajax({
-				type: "POST",
-				url: "https://webserver-nao-vacila.herokuapp.com/ocorrencia/",
-				data: ocorrencia,
-				dataType: "json",
-				contentType : "application/json"
-			});
-
-			document.getElementById("myForm").reset();
-			return confirm("Ocorrência cadastrada com sucesso");
 });
