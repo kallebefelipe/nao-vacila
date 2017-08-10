@@ -71,13 +71,14 @@ function displayMarkers(){
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
 function createMarker(latlng, titulo, data, endereco, tipo){
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
     var marker;
     marker = new google.maps.Marker({
         map: map,
         position: latlng,
         title: titulo
 
-        /* Bloco de Decisão do tipo de marcador
+        /* Bloco de Decisão do tipo de marcador*/
         icon: switch(markersData.tipo){
             case 1:
                 icon: // Aqui vem a URL da imagem do ícone usado.
@@ -105,7 +106,7 @@ function createMarker(latlng, titulo, data, endereco, tipo){
 
 
     }
-        */
+
     });
 
    // Evento que dá instrução à API para estar alerta ao click no marcador.

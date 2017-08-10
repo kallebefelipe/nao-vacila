@@ -8,7 +8,7 @@ var markersData = new Array();
 //GET JSON OCORRENCIAS
 $.getJSON( "https://webserver-nao-vacila.herokuapp.com/ocorrencia/?format=json", function( data ) {
     markersData = data;
-    displayMarkers();
+    //displayMarkers();
     createHeatMap();
 	changeRadius();
 	changeOpacity();
@@ -74,41 +74,41 @@ function displayMarkers(){
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
 function createMarker(latlng, titulo, data, endereco, tipo){
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
     var marker;
     marker = new google.maps.Marker({
         map: map,
         position: latlng,
         title: titulo
 
-        /* Bloco de Decisão do tipo de marcador
+        // Bloco de Decisão do tipo de marcador
         icon: switch(markersData.tipo){
             case 1:
-                icon: // Aqui vem a URL da imagem do ícone usado.
+                icon: iconBase + var pinColor = "#d87e29";
                 break;
             case 2:
-                icon: // Aqui vem a URL da imagem do ícone usado.
+                icon: iconBase + var pinColor = "#f7df2e";
                 break;
             case 3:
-                icon: // Aqui vem a URL da imagem do ícone usado.
+                icon: iconBase +  var pinColor = "#a6f72d";
                 break;
             case 4:
-                icon: // Aqui vem a URL da imagem do ícone usado.
+                icon: iconBase + var pinColor = "#17c4b8";
                 break;
             case 5:
-                icon: // Aqui vem a URL da imagem do ícone usado.
+                icon: iconBase + var pinColor = "#103cea";
                 break;
             case 6:
-                icon: // Aqui vem a URL da imagem do ícone usado.
+                icon: iconBase +  var pinColor = "#711fc4";
                 break;
             case 7:
-                icon: // Aqui vem a URL da imagem do ícone usado.
+                icon: iconBase + var mpinColor = '#d317bd'
                 break;
             default:
-                icon: /nao-vacila/site/imgs/default_marker.png;
+            icon: iconBase + var pinColor = "#FE7569";
 
+        }
 
-    }
-        */
     });
 
    // Evento que dá instrução à API para estar alerta ao click no marcador.
@@ -171,7 +171,7 @@ function changeGradient() {
 }
 
 function changeRadius() {
-    heatmap.set('radius', heatmap.get('radius') ? null : 5);
+    heatmap.set('radius', heatmap.get('radius') ? null : 4);
 }
 
 function changeDissipating() {
@@ -179,5 +179,5 @@ function changeDissipating() {
 }
 
 function changeOpacity() {
-        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.6);
+        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.8);
       }
