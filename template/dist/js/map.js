@@ -1,5 +1,7 @@
 var map;
 var infoWindow;
+var markers = new Array();
+
 
 // A variável markersData guarda a informação necessária a cada marcador
 // Para utilizar este código basta alterar a informação contida nesta variável
@@ -8,7 +10,7 @@ var markersData = new Array();
 //GET JSON OCORRENCIAS
 $.getJSON( "https://webserver-nao-vacila.herokuapp.com/ocorrencia/?format=json", function( data ) {
     markersData = data;
-    //displayMarkers();
+    displayMarkers();
     createHeatMap();
 	changeRadius();
 	changeOpacity();
@@ -47,7 +49,7 @@ function displayMarkers(){
 
    // esta variável vai definir a área de mapa a abranger e o nível do zoom
    // de acordo com as posições dos marcadores
-   var bounds = new google.maps.LatLngBounds();
+   //var bounds = new google.maps.LatLngBounds();
    
    // Loop que vai estruturar a informação contida em markersData
    // para que a função createMarker possa criar os marcadores 
@@ -57,19 +59,19 @@ function displayMarkers(){
       var titulo = markersData[i].titulo;
       var data = markersData[i].data;
       var endereco = markersData[i].endereco;
-      var tipo = markersData[i].tipo;
+      var tipo = markersData[i].id_tipo;
 
       createMarker(latlng, titulo, data, endereco, tipo);
 
       // Os valores de latitude e longitude do marcador são adicionados à
       // variável bounds
-      bounds.extend(latlng);  
+      //bounds.extend(latlng);  
    }
 
    // Depois de criados todos os marcadores
    // a API através da sua função fitBounds vai redefinir o nível do zoom
    // e consequentemente a área do mapa abrangida.
-   map.fitBounds(bounds);
+   //map.fitBounds(bounds);
 }
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
@@ -79,31 +81,31 @@ function createMarker(latlng, titulo, data, endereco, tipo){
     var icone;
     var pinColor = "FE7569";
     switch(tipo){
-        case 1:
+        case "1":
             pinColor = "d87e29";
             icone: iconBase + pinColor;
             break;
-        case 2:
+        case "2":
             pinColor = "f7df2e";
             icone: iconBase + pinColor;
             break;
-        case 3:
+        case "3":
             pinColor = "a6f72d";
             icone: iconBase + pinColor;
             break;
-        case 4:
+        case "4":
             pinColor = "17c4b8";
             icone: iconBase + pinColor;
             break;
-        case 5:
+        case "5":
             pinColor = "103cea";
             icone: iconBase + pinColor;
             break;
-        case 6:
+        case "6":
             pinColor = "711fc4";
             icone: iconBase + pinColor;
             break;
-        case 7:
+        case "7":
             pinColor = 'd317bd'
             icone: iconBase + pinColor;
             break;
@@ -119,7 +121,8 @@ function createMarker(latlng, titulo, data, endereco, tipo){
         title: titulo,
         icon: icone,
     });
-
+ 	markers.push(marker);
+	
    // Evento que dá instrução à API para estar alerta ao click no marcador.
    // Define o conteúdo e abre a Info Window.
    google.maps.event.addListener(marker, 'click', function() {
@@ -160,12 +163,9 @@ function toggleHeatmap() {
 }
 
 function clearMarkers() {
-    var markers = new Array();
-    for(i = 0; i < markersData.length; i++){
-        markers.push( new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude));
+    for(i = 0; i < markers.length; i++){
         markers[i].setMap(null);
     }
-
 }
 
 function changeGradient() {

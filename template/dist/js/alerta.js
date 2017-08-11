@@ -80,11 +80,24 @@ initialize();
     
 
 $("form").submit(function(event) {
-
-	alerta = JSON.stringify({
-				nome: $("#nomeAlerta").val(),
+	
+	FB.getLoginStatus(function(response) {
+	  if (response.status === 'connected') {
+		// the user is logged in and has authenticated your
+		// app, and response.authResponse supplies
+		// the user's ID, a valid access token, a signed
+		// request, and the time the access token 
+		// and signed request each expire
+		  
+		uid = response.authResponse.userID;
+		var accessToken = response.authResponse.accessToken;
+		  
+		    
+		  event.preventDefault();
+		  alerta = JSON.stringify({
 				raio: $("#raioAlerta").val(),
-				endereco: $("#enderecoAlerta").val(),
+			  	id_usuario: uid,
+			  	token: 0,//PASSAR O TOKEN QUE VEM DE NUM SEI ONDE
 				latitude: latitude,
 				longitude: longitude
 			});
@@ -97,4 +110,14 @@ $("form").submit(function(event) {
 				contentType : "application/json"
 			});
 			return confirm("Alerta cadastrado com sucesso");
+		  
+	  } else if (response.status === 'not_authorized') {
+		// the user is logged in to Facebook, 
+		// but has not authenticated your app
+		  alert('Você precisa se autenticar');
+	  } else {
+		// the user isn't logged in to Facebook.
+		  alert('Você precisa estar logado para cadastrar alerta');
+	  }
+	 });
 });

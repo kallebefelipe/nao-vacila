@@ -16,5 +16,33 @@ $(function(d, s, id) {
 				version : 'v2.8' // use graph api version 2.8
 			  });
 			}
+		//verificaCadastro();
         }(document, 'script', 'facebook-jssdk'));
-	
+
+/*function verificaCadastro(){
+	$.getJSON( "https://webserver-nao-vacila.herokuapp.com/usuario", function( data ) {//PUT?
+		//VERIFICA SE USUÁRIO ESTA CADASTRADO
+		if(){
+		   //Se Sim pega id
+		} else{
+		   //Se não cadastra
+		   var usuario = JSON.stringify({
+		   		url_foto: null,
+				id_fb: null,
+				email: null,
+				sexo: null,
+				token: null,
+				cidade: null,
+				nome: null
+			});
+
+			$.ajax({
+				type: "POST",
+				url: "https://webserver-nao-vacila.herokuapp.com/usuario",
+				data: usuario,
+				dataType: "json",
+				contentType : "application/json"
+			});
+		}
+	})
+}*/
