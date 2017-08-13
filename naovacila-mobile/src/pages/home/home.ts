@@ -1,9 +1,10 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
 import { OcorrenciaServicoProvider } from '../../providers/ocorrencia-servico/ocorrencia-servico';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CriarRotaPage } from '../criar-rota/criar-rota';
 import { Http } from '@angular/http';
+
 
 declare var google;
 
@@ -18,19 +19,23 @@ export class HomePage {
   ocorrencias: any;
   loading = true;
   exibirPanelDirection = false;
+  loader: any;
 
   constructor(public navCtrl: NavController, public ocorrenciaServico: OcorrenciaServicoProvider, public geolocation: Geolocation,
-    public navParams: NavParams, public platform: Platform, public http: Http) {
+    public navParams: NavParams, public platform: Platform, public http: Http,
+    public loadingCtrl: LoadingController) {
     this.loadMap();
   }
 
   ionViewDidLoad() {
+    
     this.loading = true;
     console.log("INFO - valor lat e long" + this.navParams.get("latitude") + " ," + this.navParams.get("longitude"));
     if (this.navParams.get("requisicaoRota")) {
       this.exibirPanelDirection = true;
     }
 
+   
 
   }
 
@@ -92,6 +97,7 @@ export class HomePage {
   }
 
   carregarOcorrencias() {
+    this.presentLoading();
     this.ocorrenciaServico.carregarOcorrencias()
       .subscribe(
       data => {
@@ -99,9 +105,11 @@ export class HomePage {
         for (var i = 0; i < this.ocorrencias.length; i++) {
           this.adicionarMarcador(this.ocorrencias[i]);
         }
+        this.loader.dismiss();
       },
       err => {
         console.log('[ERRO] ao carregar ocorrências no serviço' + err);
+        this.loader.dismiss();
       },
       () => {
         this.loading = false;
@@ -187,4 +195,13 @@ export class HomePage {
 
   }
 
+  presentLoading() {
+
+    this.loader = this.loadingCtrl.create({
+      content: "Carregando ocorrências..."
+    });
+
+    this.loader.present();
+
+  }
 }

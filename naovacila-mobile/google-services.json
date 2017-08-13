@@ -1,0 +1,66 @@
+{
+  "project_info": {
+    "project_number": "550281591965",
+    "firebase_url": "https://nao-vacila.firebaseio.com",
+    "project_id": "nao-vacila",
+    "storage_bucket": "nao-vacila.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550281591965:android:4bfdb63f8a88c7bf",
+        "android_client_info": {
+          "package_name": "ufrpe.naovacila"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550281591965-25mlosm9arcsmevjvaifv48s2eoj8t4s.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "550281591965-m7m86vovjtu4kdo6af0e4anlh5600oes.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ufrpe.naovacila",
+            "certificate_hash": "369ef9207b83a17f41977ed7931717325708a7e2"
+          }
+        },
+        {
+          "client_id": "550281591965-pr7s1c3ndpcv7pg0clebuape5k3ejs7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5aFMF1kxCrd0dXgAm5vOoKOtpbWSXyIg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550281591965-47suhso1c2e8hsrvhj8a49ckjp2e5td8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ufrpe.naovacila"
+              }
+            },
+            {
+              "client_id": "550281591965-25mlosm9arcsmevjvaifv48s2eoj8t4s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

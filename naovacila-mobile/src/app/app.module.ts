@@ -26,7 +26,9 @@ import { RotaServicoProvider } from '../providers/rota-servico/rota-servico';
 import { NoticiaProvider } from '../providers/noticia/noticia';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { EstatisticasProvider } from '../providers/estatisticas/estatisticas';
-
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { MeusRadaresPage } from '../pages/meus-radares/meus-radares';
+import { RadarProvider } from '../providers/radar/radar';
 
 
 @NgModule({
@@ -38,7 +40,8 @@ import { EstatisticasProvider } from '../providers/estatisticas/estatisticas';
     TabsPage,
     LoginPage,
     CriarRotaPage,
-    EstatisticasPage
+    EstatisticasPage,
+    MeusRadaresPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { EstatisticasProvider } from '../providers/estatisticas/estatisticas';
     TabsPage,
     LoginPage,
     CriarRotaPage,
-    EstatisticasPage
+    EstatisticasPage,
+    MeusRadaresPage
   ],
   providers: [
     StatusBar,
@@ -72,7 +76,9 @@ import { EstatisticasProvider } from '../providers/estatisticas/estatisticas';
     NoticiaProvider,
     InAppBrowser,
     UsuarioProvider,
-    EstatisticasProvider
+    EstatisticasProvider,
+    Push,
+    RadarProvider,
   ]
 })
 export class AppModule {}

@@ -1,0 +1,28 @@
+<!--
+  Generated template for the MeusRadaresPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <ion-title>Meus radares</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-fab right bottom >
+    <button ion-fab (click)="abrirRegistrarRadar()" color="secondary"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+  <ion-list>
+    <ion-card *ngFor = "let radar of radares">
+      <h1>{{radar.titulo}}</h1>
+      <p>{{radar.endereco}}</p>
+    </ion-card>
+  </ion-list>
+
+</ion-content>
