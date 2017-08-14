@@ -20,7 +20,7 @@ export class MinhasOcorrenciasPage {
 
     this.storage.get('user')
       .then(data => {
-        this.ocorrenciaServico.carregarOcorrenciasUsuario(1)
+        this.ocorrenciaServico.carregarOcorrenciasUsuario(data.id)
           .subscribe(
           data => { 
             this.ocorrencias = data;

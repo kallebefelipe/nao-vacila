@@ -23,13 +23,19 @@ namespace api_noticias.Controllers
             List <HtmlNode> listaNoticias = document.GetElementbyId("divResultadoAjax").ChildNodes.Where(x => x.Name == "ul").ToList();
 
             listaNoticias.Remove(listaNoticias[listaNoticias.Count()-1]);
+            int qnt_noticias = 0;
             foreach (var dia in listaNoticias)
             {
+                if (qnt_noticias == 9)
+                {
+                    break;
+                }
                 var diaFilhos = dia.ChildNodes.Where(x => x.Name == "li").ToList();
                 var data = diaFilhos.First().InnerHtml;
                 diaFilhos.RemoveAt(0);
                 foreach (var hora in diaFilhos)
                 {
+                    
                     var HH  = hora.ChildNodes[1].InnerHtml.Replace("\r", "").Replace("\n", "").Trim();
                     var titulo = hora.ChildNodes[3].InnerHtml.Replace("\r", "").Replace("\n", "").Trim();
                     var urlNoticia = hora.ChildNodes[3].Attributes["href"].Value;
@@ -47,6 +53,11 @@ namespace api_noticias.Controllers
                     noticia.Subtitulo = subtitulo;
                     noticia.UrlImagem = urlImagem;
                     noticias.Add(noticia);
+                    qnt_noticias++;
+                    if (qnt_noticias == 9)
+                    {
+                        break;
+                    }
                 }
                 
             }

@@ -5,7 +5,7 @@ import { RadarProvider } from '../../providers/radar/radar';
 
 
 
-@IonicPage()
+
 @Component({
   selector: 'page-meus-radares',
   templateUrl: 'meus-radares.html',
@@ -21,7 +21,7 @@ export class MeusRadaresPage {
 
     this.storage.get('user')
       .then(data => {
-        this.radarServico.carregarRadaresUsuario(1)
+        this.radarServico.carregarRadaresUsuario(data.id)
           .subscribe(
           data => { 
             this.radares = data;

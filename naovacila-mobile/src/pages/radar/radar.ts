@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EstatisticasPage } from '../estatisticas/estatisticas';
+import { MeusRadaresPage } from '../meus-radares/meus-radares';
 
 /**
  * Generated class for the RadarPage page.
@@ -33,6 +34,10 @@ export class RadarPage {
   abrirEstatisticas(){
     console.log('click abrir estatisticas');
     this.navCtrl.push(EstatisticasPage);
+  }
+
+  abrirMeusRadares(){
+    this.navCtrl.push(MeusRadaresPage);
   }
 
 }

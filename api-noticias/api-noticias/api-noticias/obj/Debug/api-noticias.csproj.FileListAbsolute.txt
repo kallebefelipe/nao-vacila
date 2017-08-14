@@ -84,3 +84,6 @@ C:\Users\acaro\nao-vacila\api-noticias\api-noticias\api-noticias\bin\pt-br\Syste
 C:\Users\acaro\nao-vacila\api-noticias\api-noticias\api-noticias\obj\Debug\api-noticias.csprojResolveAssemblyReference.cache
 C:\Users\acaro\nao-vacila\api-noticias\api-noticias\api-noticias\obj\Debug\api-noticias.dll
 C:\Users\acaro\nao-vacila\api-noticias\api-noticias\api-noticias\obj\Debug\api-noticias.pdb
+C:\Users\acaro\nao-vacila\api-noticias\api-noticias\api-noticias\bin\System.Web.Cors.dll
+C:\Users\acaro\nao-vacila\api-noticias\api-noticias\api-noticias\bin\System.Web.Http.Cors.dll
+C:\Users\acaro\nao-vacila\api-noticias\api-noticias\api-noticias\bin\System.Web.Http.Cors.xml
