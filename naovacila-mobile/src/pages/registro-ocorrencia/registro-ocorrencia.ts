@@ -4,6 +4,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { OcorrenciaServicoProvider } from '../../providers/ocorrencia-servico/ocorrencia-servico';
+import { Storage } from '@ionic/storage';
 
 declare var google;
 
@@ -25,7 +26,9 @@ export class RegistroOcorrenciaPage {
   latitude: any;
   longitude: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public ocorrenciaServico: OcorrenciaServicoProvider, private nativeGeocoder: NativeGeocoder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation,
+    public ocorrenciaServico: OcorrenciaServicoProvider, private nativeGeocoder: NativeGeocoder,
+    public storage: Storage) {
 
     this.id_tipoOcorrencia = this.navParams.get("id_tipo");
     console.log("INFO - id tipo ocorrencia é " + this.id_tipoOcorrencia);
@@ -62,20 +65,25 @@ export class RegistroOcorrenciaPage {
   }
 
   salvarOcorrencia() {
+    this.storage.get('user')
+      .then(data => {
+        console.log('INFO registro ocorrencia user ' + JSON.stringify(data));
 
-    this.ocorrenciaServico.salvarOcorrencia(this.id_tipoOcorrencia, this.descricao, this.latitude, this.titulo, this.hoje, this.endereco, this.longitude, 1, this.hora)
-      .subscribe(
-      data => {
-        console.log("INFO - sucesso ao salvar ocorrencia" + data);
-        this.navCtrl.setRoot(HomePage, { latitude: this.latitude, longitude: this.longitude });
+        this.ocorrenciaServico.salvarOcorrencia(this.id_tipoOcorrencia, this.descricao, this.latitude, this.titulo, this.hoje, this.endereco, this.longitude, JSON.parse(data).id, this.hora)
+          .subscribe(
+          data => {
+            console.log("INFO - sucesso ao salvar ocorrencia" + data);
+            this.navCtrl.setRoot(HomePage, { latitude: this.latitude, longitude: this.longitude });
 
-      },
-      err => {
-        alert("Erro ao salvar ocorrência. Tente novamente.")
-        console.log('[ERRO] ao carregar ocorrências no serviço' + err);
-      },
-      () => console.log("serviço finalizado")
-      );
+          },
+          err => {
+            alert("Erro ao salvar ocorrência. Tente novamente.")
+            console.log('[ERRO] ao carregar ocorrências no serviço' + err);
+          },
+          () => console.log("serviço finalizado")
+          );
+      })
+
   }
 
   ionViewDidLoad() {
@@ -99,7 +107,7 @@ export class RegistroOcorrenciaPage {
       }
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      
+
       switch (this.id_tipoOcorrencia) {
         case 1: { //
           var pinColor = "d87e29";

@@ -17,11 +17,16 @@ export class MeusRadaresPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MeusRadaresPage');
+    this.storage.get('token')
+      .then(token=>{
+        console.log('INFO MeusRadaresPage token ' + token);
+      })
+    
 
     this.storage.get('user')
       .then(data => {
-        this.radarServico.carregarRadaresUsuario(data.id)
+        console.log('INFO meus radares user' + JSON.stringify(JSON.parse(data)));
+        this.radarServico.carregarRadaresUsuario(JSON.parse(data).id)
           .subscribe(
           data => { 
             this.radares = data;

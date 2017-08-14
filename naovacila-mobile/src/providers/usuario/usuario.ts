@@ -25,7 +25,7 @@ export class UsuarioProvider {
     let options = new RequestOptions({ headers: headers });
 
      return this.http.post(apiSalvarUsuarioUrl, usuario, options)
-      .map(res=>{res.json()});
+      .map(res=>res.json());
 
 
   }

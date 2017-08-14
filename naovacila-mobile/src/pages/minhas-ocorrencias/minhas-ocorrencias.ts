@@ -20,16 +20,18 @@ export class MinhasOcorrenciasPage {
 
     this.storage.get('user')
       .then(data => {
-        this.ocorrenciaServico.carregarOcorrenciasUsuario(data.id)
+        console.log('INFO minhas ocorrencias user ' + JSON.stringify(JSON.parse(data)));
+
+        this.ocorrenciaServico.carregarOcorrenciasUsuario(JSON.parse(data).id)
           .subscribe(
-          data => { 
-            this.ocorrencias = data;
-            console.log('INFO - lista de ocorrencias' + this.ocorrencias);
-          },
-          err => {
-            console.log('Erro ao carregar ocorrencias do usuario' + err);
-          },
-          () => console.log("servico finalizado")
+            data => {
+              this.ocorrencias = data;
+              console.log('INFO - lista de ocorrencias' + this.ocorrencias);
+            },
+            err => {
+              console.log('Erro ao carregar ocorrencias do usuario' + err);
+            },
+            () => console.log("servico finalizado")
           );
       })
   }

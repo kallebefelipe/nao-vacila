@@ -15,16 +15,16 @@ export class RadarProvider {
 
   }
 
-  salvarRadar(id_usuario, latitude, raio, longitude, endereco, titulo){
+  salvarRadar(id_usuario, latitude, raio, longitude, endereco, titulo, token){
     let radar = JSON.stringify({
       id_usuario: id_usuario,
       latitude: latitude,
       raio: raio,
       longitude: longitude,
       endereco: endereco,
-      titulo: titulo
+      titulo: titulo,
+      token: token
     })
-
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });

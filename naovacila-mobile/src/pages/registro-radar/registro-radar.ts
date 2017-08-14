@@ -13,38 +13,46 @@ declare var google;
   templateUrl: 'registro-radar.html',
 })
 export class RegistroRadarPage {
-   @ViewChild('map') mapElement: ElementRef;
-    map: any;
+  @ViewChild('map') mapElement: ElementRef;
+  map: any;
 
-    endereco: any;
-    latitude: any;
-    longitude: any;
-    id_usuario:any;
-    token: any;
-    raio: any;
-    titulo: any;
+  endereco: any;
+  latitude: any;
+  longitude: any;
+  id_usuario: any;
+  token: any;
+  raio: any;
+  titulo: any;
+  user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public radarServico: RadarProvider, public geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, public storage: Storage) {
   }
 
-  salvarRadar(){
+  salvarRadar() {
     this.storage.get('user')
-    .then(data => {
-    this.radarServico.salvarRadar(data.id, this.latitude, this.raio, this.longitude, this.endereco, this.titulo)
-      .subscribe(
-      data => {
-        console.log("INFO - sucesso ao salvar radar" + data);
-        this.navCtrl.setRoot(MeusRadaresPage);
+      .then(data => {
+        console.log('usuário local: ' + JSON.stringify(data));
+        this.user = JSON.parse(data);
 
-      },
-      err => {
-        alert("Erro ao salvar radar. Tente novamente.")
-        console.log('[ERRO] ao carregar radar no serviço' + err);
-      },
-      () => console.log("serviço finalizado")
-      );
-    })
-    
+        this.storage.get('token')
+          .then(token => {
+            console.log('INFO registro radar token ' + token);
+            this.radarServico.salvarRadar(this.user.id, this.latitude, this.raio, this.longitude, this.endereco, this.titulo, token)
+              .subscribe(
+              data => {
+                console.log("INFO - sucesso ao salvar radar " + JSON.stringify(data));
+                this.navCtrl.setRoot(MeusRadaresPage);
+              },
+              err => {
+                alert("Erro ao salvar radar. Tente novamente.")
+                console.log('[ERRO] ao carregar radar no serviço' + err);
+              },
+              () => console.log("serviço finalizado")
+              );
+          })
+
+      })
+
   }
 
   ionViewDidLoad() {

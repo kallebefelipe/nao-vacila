@@ -35,8 +35,8 @@ $app-direction: ltr;
 
 $colors: (
  // primary:    #488aff,
-  primary:    #2F2F2F,
-  secondary:  #D83C41,
+  primary:    #00285F,
+  secondary:  #00285F,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
@@ -46,16 +46,16 @@ $colors: (
 
 //$tabs-background: #424242;
 
-$tabs-md-tab-icon-color-active: #D83C41;
-$tabs-md-tab-text-color-active:  #D83C41;
+$tabs-md-tab-icon-color-active: #00285F;
+$tabs-md-tab-text-color-active:  #00285F;
 $tabs-md-tab-text-color: #000;
 $tabs-md-tab-icon-color: #000;
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-$tabs-ios-tab-icon-color-active: #D83C41;
-$tabs-ios-tab-text-color-active:  #D83C41;
+$tabs-ios-tab-icon-color-active: #00285F;
+$tabs-ios-tab-text-color-active:  #00285F;
 $tabs-ios-tab-text-color: #000;
 $tabs-ios-tab-icon-color: #000;
 

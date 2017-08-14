@@ -49,21 +49,24 @@ export class LoginPage {
             env.nativeStorage.get('token')
               .then((data) => {
                 console.log('INFO - token recuperado ' + data);
-                
+                env.token = data;
                 env.usuarioServico.salvarUsuario(data, user.email, user.gender, user.name, user.picture, userId)
                   .subscribe(
                   data => {
-                    env.retornoUsuario = data;
-                    console.log('INFO - sucesso ao salvar usuario ' + JSON.stringify(data))
-                    let usuario = {
-                      name: user.name,
-                      gender: user.gender,
-                      picture: user.picture,
-                      id: env.retornoUsuario.nao_vacila_id
-                    };
-                    env.nativeStorage.set('user', JSON.stringify(usuario));
-                    env.loader.dismiss();
-                    nav.setRoot(TabsPage);
+                    if(data){
+                      env.retornoUsuario = data;
+                      console.log('INFO - sucesso ao salvar usuario ' + JSON.stringify(data))
+                      let usuario = {
+                        name: user.name,
+                        gender: user.gender,
+                        picture: user.picture,
+                        id: env.retornoUsuario.nao_vacila_id
+                      };
+                      env.nativeStorage.set('user', JSON.stringify(usuario));
+                      env.loader.dismiss();
+                      nav.setRoot(TabsPage);
+                    }
+                    
                   },
                   err => {
                     console.log('Erro ao salvar usuario' + err);
