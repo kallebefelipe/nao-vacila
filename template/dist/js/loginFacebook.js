@@ -1,5 +1,7 @@
 // Login com Facebook
 var usuario;
+var id_usuario;
+
 $(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) return;
@@ -44,7 +46,7 @@ function cadastraUsuario(){
 				dataType: "json",
 				contentType : "application/json",
 				  success: function (msg) {
-					document.getElementById('id_usuario').value = msg.nao_vacila_id;
+					localStorage.setItem("id_usuario", msg.nao_vacila_id);
 				  }
-			});
+			});		
 }

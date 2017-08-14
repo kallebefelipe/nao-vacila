@@ -28,9 +28,7 @@ function initialize() {
         geocoder.geocode({ 'address': endereco + ', Brasil', 'region': 'BR' }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 if (results[0]) {
-                    latitude = results[0].geometry.location.lat();
-                    longitude = results[0].geometry.location.lng();
- 
+					alert(results[0].geometry.location.lat());
                     $('#enderecoAlerta').val(results[0].formatted_address);
  
                     var location = new google.maps.LatLng(latitude, longitude);
@@ -56,6 +54,8 @@ function initialize() {
         source: function (request, response) {
             geocoder.geocode({ 'address': request.term + ', Brasil', 'region': 'BR' }, function (results, status) {
                 response($.map(results, function (item) {
+					latitude = item.geometry.location.lat();
+					longitude = item.geometry.location.lng();
                     return {
                         label: item.formatted_address,
                         value: item.formatted_address,
@@ -92,17 +92,16 @@ $("form").submit(function(event) {
 		uid = response.authResponse.userID;
 		var accessToken = response.authResponse.accessToken;
 		  
-		    
 		  event.preventDefault();
 		  alerta = JSON.stringify({
 			  	titulo: $("#nomeAlerta").val(),
 			  	endereco: $("#enderecoAlerta").val(),
 				raio: $("#raioAlerta").val(),
-			  	id_usuario: $("#id_usuario").val(),
+			  	id_usuario: localStorage.getItem("id_usuario"),
 				latitude: latitude,
 				longitude: longitude
 			});
-
+		  
 			$.ajax({
 				type: "POST",
 				url: "https://webserver-nao-vacila.herokuapp.com/alertas/",
