@@ -1,4 +1,5 @@
 // Login com Facebook
+var usuario;
 $(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) return;
@@ -15,34 +16,35 @@ $(function(d, s, id) {
 				xfbml : true,  // parse social plugins on this page
 				version : 'v2.8' // use graph api version 2.8
 			  });
-			}
-		//verificaCadastro();
+		}
+		
         }(document, 'script', 'facebook-jssdk'));
 
-/*function verificaCadastro(){
-	$.getJSON( "https://webserver-nao-vacila.herokuapp.com/usuario", function( data ) {//PUT?
-		//VERIFICA SE USUÁRIO ESTA CADASTRADO
-		if(){
-		   //Se Sim pega id
-		} else{
-		   //Se não cadastra
-		   var usuario = JSON.stringify({
-		   		url_foto: null,
-				id_fb: null,
-				email: null,
-				sexo: null,
-				token: null,
-				cidade: null,
-				nome: null
-			});
+function checkLoginState(){
+	FB.getLoginStatus(function(response) {
+			  if (response.status === 'connected') {
+				  FB.api('/me?fields=name,gender,email', function(response) {
+					  usuario = JSON.stringify({
+						id_fb: response.id,
+						email: response.email,
+						sexo: response.gender,
+						nome: response.name
+					});
+					 cadastraUsuario();
+				 });	  
+			  }
+			 });
+}
 
-			$.ajax({
+function cadastraUsuario(){
+	$.ajax({
 				type: "POST",
-				url: "https://webserver-nao-vacila.herokuapp.com/usuario",
+				url: "https://webserver-nao-vacila.herokuapp.com/usuario/",
 				data: usuario,
 				dataType: "json",
-				contentType : "application/json"
+				contentType : "application/json",
+				  success: function (msg) {
+					document.getElementById('id_usuario').value = msg.nao_vacila_id;
+				  }
 			});
-		}
-	})
-}*/
+}

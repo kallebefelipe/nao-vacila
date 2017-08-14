@@ -95,9 +95,10 @@ $("form").submit(function(event) {
 		    
 		  event.preventDefault();
 		  alerta = JSON.stringify({
+			  	titulo: $("#nomeAlerta").val(),
+			  	endereco: $("#enderecoAlerta").val(),
 				raio: $("#raioAlerta").val(),
-			  	id_usuario: uid,
-			  	token: 0,//PASSAR O TOKEN QUE VEM DE NUM SEI ONDE
+			  	id_usuario: $("#id_usuario").val(),
 				latitude: latitude,
 				longitude: longitude
 			});

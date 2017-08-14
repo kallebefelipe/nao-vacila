@@ -57,7 +57,7 @@ $("form").submit(function(event) {
 				descricao: $("#descricao").val(),
 				longitude: $("#longitude").val(),
 				hora: $("#hora").val(),
-				id_usuario: uid,//VERIFICAR SE É ASSIM
+				id_usuario: $("#id_usuario").val(),
 				id_tipo: tipoOcorrencia,
 				latitude: $("#latitude").val(),
 				titulo: $("#titulo").val(),
