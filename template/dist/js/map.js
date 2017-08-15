@@ -76,51 +76,50 @@ function displayMarkers(){
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
 function createMarker(latlng, titulo, data, endereco, tipo){
-    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    var iconBase = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
     /* Bloco de Decisão do tipo de marcador*/
-    var icone;
-    var pinColor = "FE7569";
-    switch(tipo){
-        case "1":
-            pinColor = "d87e29";
-            icone: iconBase + pinColor;
-            break;
-        case "2":
-            pinColor = "f7df2e";
-            icone: iconBase + pinColor;
-            break;
-        case "3":
-            pinColor = "a6f72d";
-            icone: iconBase + pinColor;
-            break;
-        case "4":
-            pinColor = "17c4b8";
-            icone: iconBase + pinColor;
-            break;
-        case "5":
-            pinColor = "103cea";
-            icone: iconBase + pinColor;
-            break;
-        case "6":
-            pinColor = "711fc4";
-            icone: iconBase + pinColor;
-            break;
-        case "7":
-            pinColor = 'd317bd'
-            icone: iconBase + pinColor;
-            break;
-        default:
-            pinColor = "FE7569";
-            icone: iconBase + pinColor;
-
-    }
     var marker;
     marker = new google.maps.Marker({
         map: map,
         position: latlng,
         title: titulo,
-        icon: icone,
+        icon: iconBase
     });
+
+    switch(tipo){
+        case "1":
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/orange-dot.png');
+            break;
+        case "2":
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+            break;
+        case "3":
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+            break;
+        case "4":
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/ltblue-dot.png');
+            break;
+        case "5":
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+            break;
+        case "6":
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
+            break;
+        case "7":
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/pink-dot.png');
+            break;
+        default:
+
+            marker.setIcon(iconBase);
+
+    }
  	markers.push(marker);
 	
    // Evento que dá instrução à API para estar alerta ao click no marcador.
@@ -199,3 +198,17 @@ function changeDissipating() {
 function changeOpacity() {
         heatmap.set('opacity', heatmap.get('opacity') ? null : 0.4);
       }
+
+/*Legenda do Mapa
+var legend = document.getElementById('legend');
+for (var key in icons) {
+    var type = icons[key];
+    var name = type.name;
+    var icon = type.icon;
+    var div = document.createElement('div');
+    div.innerHTML = '<img src="' + icon + '"> ' + name;
+    legend.appendChild(div);
+}
+
+map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+*/
