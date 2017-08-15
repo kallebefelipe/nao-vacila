@@ -40,4 +40,6 @@ export class RadarPage {
     this.navCtrl.push(MeusRadaresPage);
   }
 
+  
+
 }

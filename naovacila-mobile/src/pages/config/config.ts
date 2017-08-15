@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-import { NativeStorage } from '@ionic-native/native-storage';
+import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 import { GooglePlus } from '@ionic-native/google-plus';
 
@@ -18,7 +18,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 })
 export class ConfigPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fb: Facebook, public googlePlus: GooglePlus, public NativeStorage: NativeStorage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fb: Facebook, public googlePlus: GooglePlus, public NativeStorage: Storage) {
   }
 
   doFbLogout(){
@@ -34,17 +34,17 @@ export class ConfigPage {
    });
  }
 
- doGoogleLogout(){
-    let nav = this.navCtrl;
-    let env = this;
-    this.googlePlus.logout()
-    .then(function (response) {
-      this.nativeStorage.remove('user');
-      nav.push(LoginPage);
-    },function (error) {
-      console.log(error);
-    })
-  }
+//  doGoogleLogout(){
+//     let nav = this.navCtrl;
+//     let env = this;
+//     this.googlePlus.logout()
+//     .then(function (response) {
+//       this.nativeStorage.remove('user');
+//       nav.push(LoginPage);
+//     },function (error) {
+//       console.log(error);
+//     })
+//   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConfigPage');

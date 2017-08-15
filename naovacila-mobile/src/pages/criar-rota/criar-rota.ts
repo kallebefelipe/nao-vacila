@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { Storage } from '@ionic/storage';
 import { RotaServicoProvider } from '../../providers/rota-servico/rota-servico';
+import { HomePage } from '../home/home';
 
 declare var google;
 
@@ -65,5 +66,10 @@ export class CriarRotaPage {
       });
     });
   }
+
+  doYourStuff()
+{
+    this.navCtrl.pop();  // remember to put this to add the back button behavior
+}
 
 }
