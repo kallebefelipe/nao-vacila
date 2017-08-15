@@ -210,7 +210,7 @@ var icons = {
         icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
     },
     sequestro: {
-        name: 'Info',
+        name: 'Sequestro',
         icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
     },
     arrombamento: {
@@ -223,25 +223,24 @@ var icons = {
     },
     homicidio: {
         name: 'Homicídio',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+        icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
     },
     trafico: {
         name: 'Tráfico',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+        icon: 'http://maps.google.com/mapfiles/ms/icons/pink-dot.png'
     },
     agressao: {
         name: 'Agressão',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
     },
     estupro: {
         name: 'Estupro',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
     },
     acidente: {
         name: 'Acidente',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-    },
-
+        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    }
 };
 
 
@@ -250,7 +249,7 @@ var legend = document.getElementById('legend');
 for (var key in icons) {
     var type = icons[key];
     var name = type.name;
-    var icon = markers.icon;
+    var icon = type.icon;
     var div = document.createElement('div');
     div.innerHTML = '<img src="' + icon + '"> ' + name;
     legend.appendChild(div);
