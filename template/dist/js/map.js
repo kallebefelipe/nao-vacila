@@ -15,6 +15,7 @@ $.getJSON( "https://webserver-nao-vacila.herokuapp.com/ocorrencia/?format=json",
 	changeRadius();
 	changeOpacity();
 	changeDissipating();
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 })
 
 
@@ -199,16 +200,60 @@ function changeOpacity() {
         heatmap.set('opacity', heatmap.get('opacity') ? null : 0.4);
       }
 
-/*Legenda do Mapa
+var icons = {
+    assalto: {
+        name: 'Assalto',
+        icon:'http://maps.google.com/mapfiles/ms/icons/orange-dot.png'
+    },
+    roubo: {
+        name: 'Roubo',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+    },
+    sequestro: {
+        name: 'Info',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+    },
+    arrombamento: {
+        name: 'Arrombamento',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/ltblue-dot.png'
+    },
+    tiroteio: {
+        name: 'Tiroteio',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    },
+    homicidio: {
+        name: 'Homicídio',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    },
+    trafico: {
+        name: 'Tráfico',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    },
+    agressao: {
+        name: 'Agressão',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    },
+    estupro: {
+        name: 'Estupro',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    },
+    acidente: {
+        name: 'Acidente',
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    },
+
+};
+
+
+//Legenda do Mapa
 var legend = document.getElementById('legend');
 for (var key in icons) {
     var type = icons[key];
     var name = type.name;
-    var icon = type.icon;
+    var icon = markers.icon;
     var div = document.createElement('div');
     div.innerHTML = '<img src="' + icon + '"> ' + name;
     legend.appendChild(div);
 }
 
-map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
-*/
+
