@@ -41,7 +41,7 @@ export class RegistroRadarPage {
               .subscribe(
               data => {
                 console.log("INFO - sucesso ao salvar radar " + JSON.stringify(data));
-                this.navCtrl.setRoot(MeusRadaresPage);
+                this.navCtrl.pop();
               },
               err => {
                 alert("Erro ao salvar radar. Tente novamente.")
