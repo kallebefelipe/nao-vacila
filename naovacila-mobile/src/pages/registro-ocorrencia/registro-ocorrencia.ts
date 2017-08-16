@@ -130,6 +130,15 @@ export class RegistroOcorrenciaPage {
         case 7: {
           var pinColor = "d317bd";
         } break;
+        case 8: {
+          var pinColor = "ec1f32";
+        } break;
+        case 9: {
+          var pinColor = "67676f";
+        } break;
+        case 10: {
+          var pinColor = "0a5312";
+        } break;
         default: var pinColor = "FE7569";
       }
 
