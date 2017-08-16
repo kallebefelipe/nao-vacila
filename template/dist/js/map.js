@@ -3,7 +3,6 @@ var infoWindow;
 var markers = new Array();
 
 
-
 // A variável markersData guarda a informação necessária a cada marcador
 // Para utilizar este código basta alterar a informação contida nesta variável
 var markersData = new Array();
@@ -85,24 +84,10 @@ function displayMarkers(){
 }
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
-var iconBase = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 function createMarker(latlng, titulo, data, endereco, tipo){
-<<<<<<< HEAD
    	/* Bloco de Decisão do tipo de marcador*/
     var icone;
     var pinColor = "FE7569";
-=======
-    /* Bloco de Decisão do tipo de marcador*/
-    var marker;
-    marker = new google.maps.Marker({
-        map: map,
-        position: latlng,
-        title: titulo,
-        icon: iconBase
-    });
-
-    var icone;
->>>>>>> 193ae314d5f3442621c00d819f1c5295e94cd753
     switch(tipo){
         case "1":
             pinColor = "d87e29";
@@ -132,17 +117,17 @@ function createMarker(latlng, titulo, data, endereco, tipo){
             pinColor = 'd317bd'
             icone: pinColor;
             break;
-        case "8":
-
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+		case "8":
+            pinColor = "FE7569";
+            icone: pinColor;
             break;
         case "9":
-
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+            pinColor = "FE7569";
+            icone: pinColor;
             break;
         case "10":
-
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+            pinColor = 'FE7569'
+            icone: pinColor;
             break;
         default:
             pinColor = "FE7569";
