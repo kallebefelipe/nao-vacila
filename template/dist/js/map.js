@@ -99,39 +99,39 @@ function createMarker(latlng, titulo, data, endereco, tipo){
             break;
         case "3":
             pinColor = "a6f72d";
-            icone: pinColor;
+            icone = pinColor;
             break;
         case "4":
             pinColor = "17c4b8";
-            icone: pinColor;
+            icone = pinColor;
             break;
         case "5":
             pinColor = "103cea";
-            icone: pinColor;
+            icone = pinColor;
             break;
         case "6":
             pinColor = "711fc4";
-            icone: pinColor;
+            icone = pinColor;
             break;
         case "7":
             pinColor = 'd317bd'
-            icone: pinColor;
+            icone = pinColor;
             break;
 		case "8":
-            pinColor = "FE7569";
-            icone: pinColor;
+            pinColor = "ec1f32";
+            icone = pinColor;
             break;
         case "9":
-            pinColor = "FE7569";
-            icone: pinColor;
+            pinColor = "67676f";
+            icone = pinColor;
             break;
         case "10":
-            pinColor = 'FE7569'
-            icone: pinColor;
+            pinColor = "0a5312"
+            icone = pinColor;
             break;
         default:
             pinColor = "FE7569";
-            icone: pinColor;
+            icone = pinColor;
     }
 	
 	var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
@@ -219,6 +219,7 @@ function changeOpacity() {
         heatmap.set('opacity', heatmap.get('opacity') ? null : 0.4);
       }
 
+
 var icons = {
     assalto: {
         name: 'Assalto',
@@ -250,15 +251,15 @@ var icons = {
     },
     agressao: {
         name: 'Agressão',
-        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|ec1f32'
     },
     estupro: {
         name: 'Estupro',
-        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|67676f'
     },
     acidente: {
         name: 'Acidente',
-        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|0a5312'
     }
 };
 
