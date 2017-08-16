@@ -73,14 +73,11 @@
 			  <div class="box box-primary">
 				<div class="box-header with-border">
 				  <h3 class="box-title"><i class="fa fa-globe"></i> Mapa de Ocorrências</h3>
+                      <button id="heatmap" class="btn btn-primary" onclick="toggleHeatmap()">Mapa de Calor</button>
+                      <button id="marcadores" class="btn btn-primary" onclick="displayMarkers()">Marcadores</button>
 				</div>
 
 				<div id="map"></div><!-- /.box-body -->
-                  <div id="floating-panel"><!-- Botões do Mapa -->
-                      <button class="btn btn-primary" onclick="toggleHeatmap()">Visualizar/Desligar Heatmap</button>
-                      <button class="btn btn-primary" onclick="displayMarkers()">Visualizar Marcadores</button>
-                      <button class="btn btn-primary" onclick="clearMarkers()">Remover Marcadores</button>
-                  </div>
 			  </div>
 
                 <div id="legend"><h3>Legenda</h3></div>

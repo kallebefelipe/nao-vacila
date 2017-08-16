@@ -22,7 +22,7 @@ $.getJSON( "https://webserver-nao-vacila.herokuapp.com/ocorrencia/?format=json",
 function initialize() {
    var mapOptions = {
       center: new google.maps.LatLng(-8.017655, -34.944377),
-      zoom: 9,
+      zoom: 13,
       mapTypeId: 'roadmap',
    };
 
@@ -51,23 +51,31 @@ function displayMarkers(){
    // esta variável vai definir a área de mapa a abranger e o nível do zoom
    // de acordo com as posições dos marcadores
    //var bounds = new google.maps.LatLngBounds();
+	if(markers.length == 0){
+	   // Loop que vai estruturar a informação contida em markersData
+	   // para que a função createMarker possa criar os marcadores 
+	   for (var i = 0; i < markersData.length; i++){
+
+		  var latlng = new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude);
+		  var titulo = markersData[i].titulo;
+		  var data = markersData[i].data;
+		  var endereco = markersData[i].endereco;
+		  var tipo = markersData[i].id_tipo;
+
+		  createMarker(latlng, titulo, data, endereco, tipo);
+
+		  // Os valores de latitude e longitude do marcador são adicionados à
+		  // variável bounds
+		  //bounds.extend(latlng);  
+	   }
+	} else{
+		for(i = 0; i < markers.length; i++){
+        	markers[i].setMap(null);
+    	}
+		markers = new Array();
+	}
    
-   // Loop que vai estruturar a informação contida em markersData
-   // para que a função createMarker possa criar os marcadores 
-   for (var i = 0; i < markersData.length; i++){
-
-      var latlng = new google.maps.LatLng(markersData[i].latitude, markersData[i].longitude);
-      var titulo = markersData[i].titulo;
-      var data = markersData[i].data;
-      var endereco = markersData[i].endereco;
-      var tipo = markersData[i].id_tipo;
-
-      createMarker(latlng, titulo, data, endereco, tipo);
-
-      // Os valores de latitude e longitude do marcador são adicionados à
-      // variável bounds
-      //bounds.extend(latlng);  
-   }
+   
 
    // Depois de criados todos os marcadores
    // a API através da sua função fitBounds vai redefinir o nível do zoom
@@ -77,50 +85,55 @@ function displayMarkers(){
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
 function createMarker(latlng, titulo, data, endereco, tipo){
-    var iconBase = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
-    /* Bloco de Decisão do tipo de marcador*/
+   	/* Bloco de Decisão do tipo de marcador*/
+    var icone;
+    var pinColor = "FE7569";
+    switch(tipo){
+        case "1":
+            pinColor = "d87e29";
+            icone = pinColor;
+            break;
+        case "2":
+            pinColor = "f7df2e";
+            icone = pinColor;
+            break;
+        case "3":
+            pinColor = "a6f72d";
+            icone: pinColor;
+            break;
+        case "4":
+            pinColor = "17c4b8";
+            icone: pinColor;
+            break;
+        case "5":
+            pinColor = "103cea";
+            icone: pinColor;
+            break;
+        case "6":
+            pinColor = "711fc4";
+            icone: pinColor;
+            break;
+        case "7":
+            pinColor = 'd317bd'
+            icone: pinColor;
+            break;
+        default:
+            pinColor = "FE7569";
+            icone: pinColor;
+    }
+	
+	var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+        new google.maps.Size(21, 34),
+        new google.maps.Point(0, 0),
+        new google.maps.Point(10, 34));
+	
     var marker;
     marker = new google.maps.Marker({
         map: map,
         position: latlng,
         title: titulo,
-        icon: iconBase
+        icon: pinImage,
     });
-
-    switch(tipo){
-        case "1":
-
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/orange-dot.png');
-            break;
-        case "2":
-
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
-            break;
-        case "3":
-
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-            break;
-        case "4":
-
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/ltblue-dot.png');
-            break;
-        case "5":
-
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
-            break;
-        case "6":
-
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
-            break;
-        case "7":
-
-            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/pink-dot.png');
-            break;
-        default:
-
-            marker.setIcon(iconBase);
-
-    }
  	markers.push(marker);
 	
    // Evento que dá instrução à API para estar alerta ao click no marcador.
@@ -162,12 +175,6 @@ function toggleHeatmap() {
     heatmap.setMap(heatmap.getMap() ? null : map);
 }
 
-function clearMarkers() {
-    for(i = 0; i < markers.length; i++){
-        markers[i].setMap(null);
-    }
-}
-
 function changeGradient() {
     var gradient = [
         'rgba(0, 255, 255, 0)',
@@ -203,43 +210,43 @@ function changeOpacity() {
 var icons = {
     assalto: {
         name: 'Assalto',
-        icon:'http://maps.google.com/mapfiles/ms/icons/orange-dot.png'
+        icon:'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|d87e29'
     },
     roubo: {
         name: 'Roubo',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|f7df2e'
     },
     sequestro: {
         name: 'Sequestro',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|a6f72d'
     },
     arrombamento: {
         name: 'Arrombamento',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/ltblue-dot.png'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|17c4b8'
     },
     tiroteio: {
         name: 'Tiroteio',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|103cea'
     },
     homicidio: {
         name: 'Homicídio',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|711fc4'
     },
     trafico: {
         name: 'Tráfico',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/pink-dot.png'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|d317bd'
     },
     agressao: {
         name: 'Agressão',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569'
     },
     estupro: {
         name: 'Estupro',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569'
     },
     acidente: {
         name: 'Acidente',
-        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+        icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569'
     }
 };
 
