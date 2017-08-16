@@ -3,6 +3,7 @@ var infoWindow;
 var markers = new Array();
 
 
+
 // A variável markersData guarda a informação necessária a cada marcador
 // Para utilizar este código basta alterar a informação contida nesta variável
 var markersData = new Array();
@@ -76,8 +77,8 @@ function displayMarkers(){
 }
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
+var iconBase = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 function createMarker(latlng, titulo, data, endereco, tipo){
-    var iconBase = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
     /* Bloco de Decisão do tipo de marcador*/
     var marker;
     marker = new google.maps.Marker({
@@ -87,6 +88,7 @@ function createMarker(latlng, titulo, data, endereco, tipo){
         icon: iconBase
     });
 
+    var icone;
     switch(tipo){
         case "1":
 
@@ -115,6 +117,18 @@ function createMarker(latlng, titulo, data, endereco, tipo){
         case "7":
 
             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/pink-dot.png');
+            break;
+        case "8":
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+            break;
+        case "9":
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+            break;
+        case "10":
+
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
             break;
         default:
 
