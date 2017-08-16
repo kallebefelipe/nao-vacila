@@ -21,7 +21,7 @@ $.getJSON( "https://webserver-nao-vacila.herokuapp.com/ocorrencia/?format=json",
 
 function initialize() {
    var mapOptions = {
-      center: new google.maps.LatLng(-8.017655, -34.944377),
+      center: new google.maps.LatLng(-8.0537866, -34.9435343),
       zoom: 13,
       mapTypeId: 'roadmap',
    };
@@ -61,8 +61,9 @@ function displayMarkers(){
 		  var data = markersData[i].data;
 		  var endereco = markersData[i].endereco;
 		  var tipo = markersData[i].id_tipo;
+		  var descricao = markersData[i].descricao;
 
-		  createMarker(latlng, titulo, data, endereco, tipo);
+		  createMarker(latlng, titulo, data, endereco, tipo, descricao);
 
 		  // Os valores de latitude e longitude do marcador são adicionados à
 		  // variável bounds
@@ -84,7 +85,7 @@ function displayMarkers(){
 }
 
 // Função que cria os marcadores e define o conteúdo de cada Info Window.
-function createMarker(latlng, titulo, data, endereco, tipo){
+function createMarker(latlng, titulo, data, endereco, tipo, descricao){
    	/* Bloco de Decisão do tipo de marcador*/
     var icone;
     var pinColor = "FE7569";
@@ -154,7 +155,8 @@ function createMarker(latlng, titulo, data, endereco, tipo){
       
       // Variável que define a estrutura do HTML a inserir na Info Window.
       var iwContent = '<div id="iw_container">' +
-            '<div class="iw_title">' + titulo + '</div>' +
+            '<div class="iw_title"><h5>' + titulo + '</h5></div>' +
+		  '<div class="iw_descricao">' + descricao + '</div>' +
          '<div class="iw_content">' + data + '<br />' +
          endereco + '<br />' + '</div></div>';
       
