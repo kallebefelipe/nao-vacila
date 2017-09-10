@@ -3,11 +3,15 @@ var cadastro;
 $("form").submit(function(event) {
 
     cadastro = JSON.stringify({
-        nome: $("#nome").val() + $("#snome").val(),
-        cidade: $("#endereco").val(),
-        sexo: $("#sexo").val(),
+        token: null,
+        id_google: null
         email: $("#email").val(),
+        sexo: $("#sexo").val(),
+        nome: $("#nome").val() + $("#snome").val(),
         senha: $("#senha").val(),
+        url_foto: null
+        id_fb: null
+        cidade: $("#endereco").val(),
         id: localStorage.getItem("id")
 
         $.ajax({
